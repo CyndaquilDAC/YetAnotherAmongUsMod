@@ -441,22 +441,10 @@ class PlayState extends MusicBeatState
 		if(SONG.stage == null || SONG.stage.length < 1) {
 			switch (songName)
 			{
-				case 'spookeez' | 'south' | 'monster':
-					curStage = 'spooky';
-				case 'pico' | 'blammed' | 'philly' | 'philly-nice':
-					curStage = 'philly';
-				case 'milf' | 'satin-panties' | 'high':
-					curStage = 'limo';
-				case 'cocoa' | 'eggnog':
-					curStage = 'mall';
-				case 'winter-horrorland':
-					curStage = 'mallEvil';
-				case 'senpai' | 'roses':
-					curStage = 'school';
-				case 'thorns':
-					curStage = 'schoolEvil';
-				case 'ugh' | 'guns' | 'stress':
-					curStage = 'tank';
+				case 'thrill-of-the-hunt':
+					curStage = 'thrill';
+				case 'displacement':
+					curStage = 'displace';
 				default:
 					curStage = 'stage';
 			}
@@ -547,6 +535,14 @@ class PlayState extends MusicBeatState
 				effgee.loadGraphic(Paths.image('thrill/fg'));
 				effgee.antialiasing = true;
 				effgee.scrollFactor.set(0, 0);
+			case 'displace':
+				beegee = new FlxSprite(-600, -200);
+				beegee.loadGraphic(Paths.image('displace'));
+				beegee.antialiasing = true;
+				beegee.scale.set(2, 2);
+				beegee.updateHitbox();
+				beegee.screenCenter();
+				add(beegee);
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
