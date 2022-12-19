@@ -2825,7 +2825,7 @@ class PlayState extends MusicBeatState
 				var secondsTotal:Int = Math.floor(songCalc / 1000);
 				if(secondsTotal < 0) secondsTotal = 0;
 
-				timeyThing = FlxStringUtil.formatTime(secondsTotal, false);
+				timeyThing = FlxStringUtil.formatTime(curTime / 1000, false);
 
 				lengthyThing = FlxStringUtil.formatTime(songLength / 1000, false);
 			}
