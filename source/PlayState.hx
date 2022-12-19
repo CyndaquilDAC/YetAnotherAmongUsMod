@@ -2838,7 +2838,7 @@ class PlayState extends MusicBeatState
 		+ ',\nMisses: ' + songMisses
 		+ ',\nRating: ' + ratingName
 		+ (ratingName != '?' ? ' (${Highscore.floorDecimal(ratingPercent * 100, 2)}%), $ratingFC' : '')
-		+ ',\nTime: $timeyThing / $lengthyThing Left';
+		+ ',\nTime: $timeyThing / $lengthyThing';
 
 		if (camZooming)
 		{
