@@ -46,6 +46,9 @@ typedef AnimArray = {
 
 class Character extends FlxSprite
 {
+	public var canDance = true;
+	public var canSing = true;
+
 	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var debugMode:Bool = false;
 
@@ -320,7 +323,7 @@ class Character extends FlxSprite
 	 */
 	public function dance()
 	{
-		if (!debugMode && !skipDance && !specialAnim)
+		if (!debugMode && !skipDance && !specialAnim && canDance)
 		{
 			if(danceIdle)
 			{
@@ -340,7 +343,11 @@ class Character extends FlxSprite
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
 		specialAnim = false;
-		animation.play(AnimName, Force, Reversed, Frame);
+
+		if(!canSing && !AnimName.startsWith('sing') || canSing)
+		{
+			animation.play(AnimName, Force, Reversed, Frame);
+		}
 
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))

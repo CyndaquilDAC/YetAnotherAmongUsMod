@@ -170,6 +170,8 @@ class PlayState extends MusicBeatState
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 
+	var balckBg:FlxSprite;
+
 	public var strumLineNotes:FlxTypedGroup<StrumNote>;
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
@@ -528,6 +530,12 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 				}
 				dadbattleSmokes = new FlxSpriteGroup(); //troll'd
+
+				balckBg = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+				balckBg.screenCenter();
+				balckBg.scrollFactor.set(0, 0);
+				add(balckBg);
+				balckBg.alpha = 0;
 			case 'thrill':
 				beegee = new FlxSprite(-95, -47);
 				beegee.loadGraphic(Paths.image('thrill/bg'));
@@ -550,6 +558,8 @@ class PlayState extends MusicBeatState
 
 		switch(Paths.formatToSongPath(SONG.song))
 		{
+			case 'obligatory':
+				GameOverSubstate.characterName = 'siiva-bf-dead';
 			case 'stress':
 				GameOverSubstate.characterName = 'bf-holding-gf-dead';
 		}
@@ -656,6 +666,8 @@ class PlayState extends MusicBeatState
 
 			switch(Paths.formatToSongPath(SONG.song))
 			{
+				case 'obligatory':
+					gfVersion = 'siiva-gf';
 				case 'stress':
 					gfVersion = 'pico-speaker';
 			}
@@ -4763,6 +4775,18 @@ class PlayState extends MusicBeatState
 
 		switch(SONG.song.toLowerCase())
 		{
+			case 'obligatory':
+				switch(curBeat)
+				{
+					case 192:
+						FlxTween.tween(balckBg, {alpha: 1}, 2);
+						FlxTween.tween(gf, {alpha: 0}, 2);
+						FlxTween.tween(dad, {alpha: 0}, 2);
+						boyfriend.canSing = false;
+						boyfriend.canDance = false;
+						boyfriend.playAnim('firstDeath', true);
+						FlxG.camera.flash(FlxColor.RED);
+				}
 			case 'thrill-of-the-hunt':
 				switch(curBeat)
 				{
