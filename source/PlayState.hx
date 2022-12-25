@@ -450,6 +450,8 @@ class PlayState extends MusicBeatState
 					curStage = 'thrill';
 				case 'displacement':
 					curStage = 'displace';
+				case 'shh':
+					curStage = 'shh';
 				default:
 					curStage = 'stage';
 			}
@@ -546,6 +548,10 @@ class PlayState extends MusicBeatState
 				effgee.loadGraphic(Paths.image('thrill/fg'));
 				effgee.antialiasing = true;
 				effgee.scrollFactor.set(0, 0);
+			case 'shh':
+				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
+				beegee.antialiasing = true;
+				add(beegee);
 			case 'displace':
 				beegee = new FlxSprite(-600, -200);
 				beegee.loadGraphic(Paths.image('displace'));
