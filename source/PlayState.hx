@@ -82,6 +82,8 @@ class PlayState extends MusicBeatState
 	var timeyThing:String = '0:00';
 	var lengthyThing:String = '0:00';
 
+	var statey:FlxSprite;
+
 	var shushed:Bool = false;
 
 	var shushIndi:FlxSprite;
@@ -337,6 +339,8 @@ class PlayState extends MusicBeatState
 	var beegee:FlxSprite;
 	var effgee:FlxSprite;
 
+	var whiteThingy:FlxSprite;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -576,6 +580,21 @@ class PlayState extends MusicBeatState
 				beegee.loadGraphic(Paths.image('mira_hall'));
 				beegee.antialiasing = true;
 				add(beegee);
+
+				balckBg = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+				balckBg.screenCenter();
+				balckBg.scrollFactor.set(0, 0);
+				add(balckBg);
+				balckBg.alpha = 0;
+
+				statey = new FlxSprite();
+				statey.frames = Paths.getSparrowAtlas('static');
+				statey.animation.addByPrefix('idle', 'idle', 24, true);
+				statey.animation.play('idle', true);
+				statey.scrollFactor.set();
+				statey.cameras = [camHUD];
+				add(statey);
+				statey.alpha = 0;
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
@@ -605,6 +624,13 @@ class PlayState extends MusicBeatState
 			gfGroup.scrollFactor.set(0, 0);
 		}
 		add(boyfriendGroup);
+
+		whiteThingy = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+		whiteThingy.screenCenter();
+		whiteThingy.scrollFactor.set(0, 0);
+		whiteThingy.cameras = [camHUD];
+		add(whiteThingy);
+		whiteThingy.alpha = 0;
 
 		switch(curStage)
 		{
@@ -4847,6 +4873,34 @@ class PlayState extends MusicBeatState
 
 		switch(SONG.song.toLowerCase())
 		{
+			case 'fissure':
+				switch(curBeat)
+				{
+					case 356:
+						FlxTween.tween(statey, {alpha: 1}, (Conductor.crochet / 250) * 4);
+					case 372:
+						dad.visible = false;
+						boyfriend.visible = false;
+						balckBg.alpha = 1;
+						FlxTween.tween(statey, {alpha: 0}, 2);
+					case 130:
+						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom + 0.5}, Conductor.crochet / 500, {ease: FlxEase.sineIn});
+						FlxTween.tween(whiteThingy, {alpha: 1}, Conductor.crochet / 500, {ease: FlxEase.sineIn});
+					case 132:
+						FlxTween.cancelTweensOf(whiteThingy);
+						FlxTween.cancelTweensOf(FlxG.camera);
+						whiteThingy.alpha = 0;
+						defaultCamZoom += 0.15;
+						balckBg.alpha = 0.4;
+						FlxG.camera.flash();
+					case 192:
+						FlxTween.tween(balckBg, {alpha: 0}, Conductor.crochet / 250, {ease: FlxEase.sineIn});
+					case 194:
+						defaultCamZoom += 0.15;
+					case 196:
+						defaultCamZoom -= 0.3;
+						FlxG.camera.flash();
+				}
 			case 'obligatory':
 				switch(curBeat)
 				{
