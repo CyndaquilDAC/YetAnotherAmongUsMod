@@ -456,6 +456,8 @@ class PlayState extends MusicBeatState
 					curStage = 'displace';
 				case 'shh':
 					curStage = 'shh';
+				case 'fissure':
+					curStage = 'fissure';
 				default:
 					curStage = 'stage';
 			}
@@ -568,6 +570,11 @@ class PlayState extends MusicBeatState
 				beegee.scale.set(2, 2);
 				beegee.updateHitbox();
 				beegee.screenCenter();
+				add(beegee);
+			case 'fissure':
+				beegee = new FlxSprite(-506, -136);
+				beegee.loadGraphic(Paths.image('mira_hall'));
+				beegee.antialiasing = true;
 				add(beegee);
 		}
 
