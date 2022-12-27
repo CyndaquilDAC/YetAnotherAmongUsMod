@@ -82,6 +82,10 @@ class PlayState extends MusicBeatState
 	var timeyThing:String = '0:00';
 	var lengthyThing:String = '0:00';
 
+	var shushed:Bool = false;
+
+	var shushIndi:FlxSprite;
+
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -552,6 +556,11 @@ class PlayState extends MusicBeatState
 				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
 				beegee.antialiasing = true;
 				add(beegee);
+				shushIndi = new FlxSprite(1120, 555).loadGraphic(Paths.image('blue_shh'));
+				shushIndi.color = FlxColor.BLACK;
+				shushIndi.antialiasing = true;
+				shushIndi.cameras = [camHUD];
+				add(shushIndi);
 			case 'displace':
 				beegee = new FlxSprite(-600, -200);
 				beegee.loadGraphic(Paths.image('displace'));
@@ -4753,6 +4762,56 @@ class PlayState extends MusicBeatState
 		if(lastBeatHit >= curBeat) {
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
+		}
+
+		if(curBeat % 16 == 0 && SONG.song.toLowerCase() == 'shh')
+		{
+			shushed = !shushed;
+
+			for(i in playerStrums)
+			{
+				i.visible = !shushed;
+			}
+
+			for(i in opponentStrums)
+			{
+				i.visible = !shushed;
+			}
+
+			for(i in notes)
+			{
+				if(shushed)
+				{
+					i.color = FlxColor.BLACK;
+				}
+				else
+				{
+					i.color = FlxColor.WHITE;
+				}
+			}
+
+			for(i in unspawnNotes)
+			{
+				if(shushed)
+				{
+					i.color = FlxColor.BLACK;
+				}
+				else
+				{
+					i.color = FlxColor.WHITE;
+				}
+			}
+
+			if(shushed)
+			{
+				shushIndi.color = FlxColor.WHITE;
+			}
+			else
+			{
+				shushIndi.color = FlxColor.BLACK;
+			}
+			
+			FlxG.sound.play(Paths.sound('shh'), 0.75);
 		}
 
 		if (generatedMusic)
