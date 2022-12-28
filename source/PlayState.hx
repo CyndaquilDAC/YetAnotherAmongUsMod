@@ -3128,7 +3128,6 @@ class PlayState extends MusicBeatState
 		paused = true;
 		cancelMusicFadeTween();
 		MusicBeatState.switchState(new ChartingState());
-		chartingMode = true;
 
 		#if desktop
 		DiscordClient.changePresence("Chart Editor", null, null, true);
@@ -3725,12 +3724,6 @@ class PlayState extends MusicBeatState
 				#end
 			}
 			playbackRate = 1;
-
-			if (chartingMode)
-			{
-				openChartEditor();
-				return;
-			}
 
 			if (isStoryMode)
 			{
