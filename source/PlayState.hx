@@ -79,6 +79,8 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
+	var noteRows:Array<Array<Array<Note>>> = [[],[]];
+
 	var timeyThing:String = '0:00';
 	var lengthyThing:String = '0:00';
 
@@ -340,6 +342,12 @@ class PlayState extends MusicBeatState
 	var effgee:FlxSprite;
 
 	var whiteThingy:FlxSprite;
+	
+	var bfGhostTween:FlxTween;
+	var bfGhost:FlxSprite;
+	
+	var dadGhost:FlxSprite;
+	var dadGhostTween:FlxTween;
 
 	override public function create()
 	{
@@ -615,6 +623,10 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 
+		dadGhost = new FlxSprite();
+		dadGhost.visible = false;
+		add(dadGhost);
+
 		add(dadGroup);
 		if (curStage == 'thrill')
 		{
@@ -623,6 +635,9 @@ class PlayState extends MusicBeatState
 			boyfriendGroup.scrollFactor.set(0, 0);
 			gfGroup.scrollFactor.set(0, 0);
 		}
+		bfGhost = new FlxSprite();
+		bfGhost.visible = false;
+		add(bfGhost);
 		add(boyfriendGroup);
 
 		whiteThingy = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
@@ -2259,6 +2274,10 @@ class PlayState extends MusicBeatState
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
 				swagNote.mustPress = gottaHitNote;
+				swagNote.row = Conductor.secsToRow(daStrumTime);
+				if(noteRows[gottaHitNote?0:1][swagNote.row]==null)
+					noteRows[gottaHitNote?0:1][swagNote.row]=[];
+				noteRows[gottaHitNote ? 0 : 1][swagNote.row].push(swagNote);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.gfNote = (section.gfSection && (songNotes[1]<4));
 				swagNote.noteType = songNotes[3];
@@ -4386,7 +4405,27 @@ class PlayState extends MusicBeatState
 
 			if(char != null)
 			{
-				char.playAnim(animToPlay, true);
+				if (!note.isSustainNote && noteRows[note.mustPress?0:1][note.row].length > 1)
+				{
+					var chord = noteRows[note.mustPress?0:1][note.row];
+					var animNote = chord[0];
+					var realAnim = singAnimations[Std.int(Math.abs(animNote.noteData))] + altAnim;
+					if (char.mostRecentRow != note.row)
+					{
+						char.playAnim(realAnim, true);
+					}
+
+					if (!note.noAnimation)
+					{
+						if(char.mostRecentRow != note.row)
+							doGhostAnim('dad', animToPlay);
+					}
+					char.mostRecentRow = note.row;
+				}
+				else
+				{
+					char.playAnim(animToPlay, true);
+				}
 				char.holdTimer = 0;
 			}
 		}
@@ -4470,7 +4509,28 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					boyfriend.playAnim(animToPlay + note.animSuffix, true);
+					if (!note.isSustainNote && noteRows[note.mustPress?0:1][note.row].length > 1)
+					{
+						var chord = noteRows[note.mustPress?0:1][note.row];
+						var animNote = chord[0];
+						var realAnim = singAnimations[Std.int(Math.abs(animNote.noteData))] + note.animSuffix;
+						if (boyfriend.mostRecentRow != note.row)
+						{
+							boyfriend.playAnim(realAnim + note.animSuffix, true);
+						}
+
+						if (!note.noAnimation)
+						{
+							if(boyfriend.mostRecentRow != note.row)
+								doGhostAnim('bf', animToPlay + note.animSuffix);
+						}
+						boyfriend.mostRecentRow = note.row;
+					}
+					else
+					{
+						boyfriend.playAnim(animToPlay + note.animSuffix, true);
+					}
+					
 					boyfriend.holdTimer = 0;
 				}
 
@@ -5202,4 +5262,58 @@ class PlayState extends MusicBeatState
 
 	var curLight:Int = -1;
 	var curLightEvent:Int = -1;
+
+	function doGhostAnim(char:String, animToPlay:String)
+	{
+		var ghost:FlxSprite = dadGhost;
+		var player:Character = dad;
+	
+		switch(char.toLowerCase().trim())
+		{
+			case 'bf' | 'boyfriend' | '0':
+				ghost = bfGhost;
+				player = boyfriend;
+			case 'dad' | 'opponent' | '1':
+				ghost = dadGhost;
+				player = dad;
+		}
+									
+		ghost.frames = player.frames;
+		ghost.animation.copyFrom(player.animation);
+		ghost.x = player.x;
+		ghost.y = player.y;
+		ghost.animation.play(animToPlay, true);
+		ghost.offset.set(player.animOffsets.get(animToPlay)[0], player.animOffsets.get(animToPlay)[1]);
+		ghost.flipX = player.flipX;
+		ghost.flipY = player.flipY;
+		ghost.blend = HARDLIGHT;
+		ghost.alpha = 0.8;
+		ghost.antialiasing = player.antialiasing;
+		ghost.visible = true;
+	
+		switch (char.toLowerCase().trim())
+		{
+			case 'bf' | 'boyfriend' | '0':
+				if (bfGhostTween != null)
+					bfGhostTween.cancel();
+				bfGhostTween = FlxTween.tween(bfGhost, {alpha: 0}, 0.75, {
+					ease: FlxEase.linear,
+					onComplete: function(twn:FlxTween)
+					{
+						bfGhostTween = null;
+					}
+				});
+	
+			case 'dad' | 'opponent' | '1':
+				if (dadGhostTween != null)
+					dadGhostTween.cancel();
+				dadGhostTween = FlxTween.tween(dadGhost, {alpha: 0}, 0.75, {
+					ease: FlxEase.linear,
+					onComplete: function(twn:FlxTween)
+					{
+						dadGhostTween = null;
+					}
+				});
+		}
+	}
 }

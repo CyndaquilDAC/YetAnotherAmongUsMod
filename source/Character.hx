@@ -46,6 +46,8 @@ typedef AnimArray = {
 
 class Character extends FlxSprite
 {
+	public var mostRecentRow:Int = 0;
+
 	public var canDance = true;
 	public var canSing = true;
 
