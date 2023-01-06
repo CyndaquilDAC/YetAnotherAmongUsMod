@@ -2562,10 +2562,7 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "saveFile", function(path:String, content:String, ?absolute:Bool = false)
 		{
 			try {
-				if(!absolute)
-					File.saveContent(Paths.mods(path), content);
-				else
-					File.saveContent(path, content);
+				File.saveContent(path, content);
 
 				return true;
 			} catch (e:Dynamic) {
@@ -2899,12 +2896,7 @@ class FunkinLua {
 			return true;
 		}
 
-		var foldersToCheck:Array<String> = [Paths.mods('shaders/')];
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/shaders/'));
-
-		for(mod in Paths.getGlobalMods())
-			foldersToCheck.insert(0, Paths.mods(mod + '/shaders/'));
+		var foldersToCheck:Array<String> = [];
 		
 		for (folder in foldersToCheck)
 		{
