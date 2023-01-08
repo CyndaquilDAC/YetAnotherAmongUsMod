@@ -1,6 +1,7 @@
 {
 	"songs": [
 		["Shh", "blue", [146, 113, 253]],
+		["Reminiscence", "face", [146, 113, 253]],
 		["Fissure", "black", [146, 113, 253]],
 		["Indecision", "wardrobe", [146, 113, 253]],
 		["Thrill-of-The-Hunt", "seeker", [146, 113, 253]],
@@ -15,7 +16,7 @@
 	],
 	"weekBackground": "stage",
 
-	"storyName": "Daddy Dearest",
+	"storyName": "The Week",
 	"weekBefore": "week1",
 	"weekName": "Week 1",
 	"startUnlocked": true,

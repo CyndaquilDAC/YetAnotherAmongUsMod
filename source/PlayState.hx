@@ -308,6 +308,9 @@ class PlayState extends MusicBeatState
 	var dadGhost:FlxSprite;
 	var dadGhostTween:FlxTween;
 
+	var heatwaveShader:HeatwaveShader;
+	var caShader:ChromaticAbberation;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -391,7 +394,7 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		if (SONG == null)
-			SONG = Song.loadFromJson('tutorial');
+			SONG = Song.loadFromJson('shh');
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
@@ -399,15 +402,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
 
-		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
-		if (isStoryMode)
-		{
-			detailsText = "Story Mode: " + WeekData.getCurrentWeek().weekName;
-		}
-		else
-		{
-			detailsText = "Freeplay";
-		}
+		detailsText = "In-Game";
 
 		// String for when the game is paused
 		detailsPausedText = "Paused - " + detailsText;
@@ -417,8 +412,9 @@ class PlayState extends MusicBeatState
 		var songName:String = Paths.formatToSongPath(SONG.song);
 
 		curStage = SONG.stage;
-		//trace('stage is: ' + curStage);
-		if(SONG.stage == null || SONG.stage.length < 1) {
+
+		if(SONG.stage == null || SONG.stage.length < 1)
+		{
 			switch (songName)
 			{
 				case 'thrill-of-the-hunt':
@@ -435,10 +431,13 @@ class PlayState extends MusicBeatState
 					curStage = 'stage';
 			}
 		}
+
 		SONG.stage = curStage;
 
 		var stageData:StageFile = StageData.getStageFile(curStage);
-		if(stageData == null) { //Stage couldn't be found, create a dummy stage for preventing a crash
+		if(stageData == null)
+		{   
+			//Stage couldn't be found, create a dummy stage for preventing a crash
 			stageData = {
 				directory: "",
 				defaultZoom: 0.9,
@@ -563,6 +562,13 @@ class PlayState extends MusicBeatState
 				statey.cameras = [camHUD];
 				add(statey);
 				statey.alpha = 0;
+
+				caShader = new ChromaticAbberation(0);
+				add(caShader);
+				caShader.amount = -0.2;
+
+				heatwaveShader = new HeatwaveShader();
+				add(heatwaveShader);
 			case 'colorchange':
 				beegee = new FlxSprite(-97, -68).loadGraphic(Paths.image('yaaum_dropship_white'));
 				beegee.antialiasing = true;
@@ -640,7 +646,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#end
-
 
 		// STAGE SCRIPTS
 		#if (MODS_ALLOWED && LUA_ALLOWED)
@@ -3865,6 +3870,7 @@ class PlayState extends MusicBeatState
 				switch(curBeat)
 				{
 					case 356:
+						//statey.shader = caShader.shader;
 						FlxTween.tween(statey, {alpha: 1}, (Conductor.crochet / 250) * 4);
 					case 372:
 						dad.visible = false;
@@ -3875,6 +3881,8 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom + 0.5}, Conductor.crochet / 500, {ease: FlxEase.sineIn});
 						FlxTween.tween(whiteThingy, {alpha: 1}, Conductor.crochet / 500, {ease: FlxEase.sineIn});
 					case 132:
+						FlxG.camera.setFilters([new ShaderFilter(heatwaveShader.shader), new ShaderFilter(caShader.shader)]);
+						camHUD.setFilters([new ShaderFilter(heatwaveShader.shader)]);
 						FlxTween.cancelTweensOf(whiteThingy);
 						FlxTween.cancelTweensOf(FlxG.camera);
 						whiteThingy.alpha = 0;
@@ -3886,6 +3894,8 @@ class PlayState extends MusicBeatState
 					case 194:
 						defaultCamZoom += 0.15;
 					case 196:
+						FlxG.camera.setFilters([]);
+						camHUD.setFilters([]);
 						defaultCamZoom -= 0.3;
 						FlxG.camera.flash();
 				}
