@@ -427,6 +427,8 @@ class PlayState extends MusicBeatState
 					curStage = 'fissure';
 				case 'indecision':
 					curStage = 'colorchange';
+				case 'post-irony':
+					curStage = 'jermhouse';
 				default:
 					curStage = 'stage';
 			}
@@ -571,6 +573,11 @@ class PlayState extends MusicBeatState
 				add(heatwaveShader);
 			case 'colorchange':
 				beegee = new FlxSprite(-97, -68).loadGraphic(Paths.image('yaaum_dropship_white'));
+				beegee.antialiasing = true;
+				add(beegee);
+			case 'jermhouse':
+				beegee = new FlxSprite(-527, -404);
+				beegee.loadGraphic(Paths.image('jermhouse'));
 				beegee.antialiasing = true;
 				add(beegee);
 		}
