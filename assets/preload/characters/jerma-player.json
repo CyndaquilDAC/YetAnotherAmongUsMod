@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				115,
+				32
+			],
+			"loop": false,
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-18,
+				0
+			],
+			"loop": false,
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-37,
+				155
+			],
+			"loop": false,
+			"anim": "singUP",
+			"fps": 24,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-39,
+				67
+			],
+			"loop": false,
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"anim": "idle",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/jermington",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "lipsjerm",
+	"flip_x": true,
+	"healthbar_colors": [
+		121,
+		199,
+		219
+	],
+	"camera_position": [
+		-120,
+		100
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
