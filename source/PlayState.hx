@@ -156,7 +156,6 @@ class PlayState extends MusicBeatState
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
-	public static var storyDifficulty:Int = 1;
 
 	public var spawnTime:Float = 2000;
 
@@ -211,7 +210,6 @@ class PlayState extends MusicBeatState
 	public var endingSong:Bool = false;
 	public var startingSong:Bool = false;
 	private var updateTime:Bool = true;
-	public static var changedDifficulty:Bool = false;
 	public static var chartingMode:Bool = false;
 
 	//Gameplay settings
@@ -264,7 +262,6 @@ class PlayState extends MusicBeatState
 
 	#if desktop
 	// Discord RPC variables
-	var storyDifficultyText:String = "";
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	#end
@@ -400,8 +397,6 @@ class PlayState extends MusicBeatState
 		Conductor.changeBPM(SONG.bpm);
 
 		#if desktop
-		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
-
 		detailsText = "In-Game";
 
 		// String for when the game is paused
@@ -1029,7 +1024,7 @@ class PlayState extends MusicBeatState
 	
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+		DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -1645,7 +1640,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength);
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -1992,11 +1987,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
 			}
 			#end
 		}
@@ -2011,11 +2006,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
 			}
 		}
 		#end
@@ -2028,7 +2023,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+			DiscordClient.changePresence(detailsPausedText, SONG.song, iconP2.getCharacter());
 		}
 		#end
 
@@ -2409,7 +2404,7 @@ class PlayState extends MusicBeatState
 		//}
 
 		#if desktop
-		DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+		DiscordClient.changePresence(detailsPausedText, SONG.song, iconP2.getCharacter());
 		#end
 	}
 
@@ -2453,7 +2448,7 @@ class PlayState extends MusicBeatState
 
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song, iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;
@@ -2862,7 +2857,7 @@ class PlayState extends MusicBeatState
 				#if !switch
 				var percent:Float = ratingPercent;
 				if(Math.isNaN(percent)) percent = 0;
-				Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
+				Highscore.saveScore(SONG.song, songScore, percent);
 				#end
 			}
 			playbackRate = 1;
@@ -2891,20 +2886,17 @@ class PlayState extends MusicBeatState
 
 						if (SONG.validScore)
 						{
-							Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
+							Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore);
 						}
 
 						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
 						FlxG.save.flush();
 					}
-					changedDifficulty = false;
 				}
 				else
 				{
-					var difficulty:String = CoolUtil.getDifficultyFilePath();
-
 					trace('LOADING NEXT SONG');
-					trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
+					trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]));
 
 					var winterHorrorlandNext = (Paths.formatToSongPath(SONG.song) == "eggnog");
 					if (winterHorrorlandNext)
@@ -2924,7 +2916,7 @@ class PlayState extends MusicBeatState
 					prevCamFollow = camFollow;
 					prevCamFollowPos = camFollowPos;
 
-					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty, PlayState.storyPlaylist[0]);
+					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0], PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
 
 					if(winterHorrorlandNext) {
@@ -2948,7 +2940,6 @@ class PlayState extends MusicBeatState
 				}
 				MusicBeatState.switchState(new FreeplayState());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
-				changedDifficulty = false;
 			}
 			transitioning = true;
 		}
@@ -4087,76 +4078,6 @@ class PlayState extends MusicBeatState
 		setOnLuas('ratingName', ratingName);
 		setOnLuas('ratingFC', ratingFC);
 	}
-
-	#if ACHIEVEMENTS_ALLOWED
-	private function checkForAchievement(achievesToCheck:Array<String> = null):String
-	{
-		if(chartingMode) return null;
-
-		var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
-		for (i in 0...achievesToCheck.length) {
-			var achievementName:String = achievesToCheck[i];
-			if(!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled) {
-				var unlock:Bool = false;
-				
-				if (achievementName.contains(WeekData.getWeekFileName()) && achievementName.endsWith('nomiss')) // any FC achievements, name should be "weekFileName_nomiss", e.g: "weekd_nomiss";
-				{
-					if(isStoryMode && campaignMisses + songMisses < 1 && CoolUtil.difficultyString() == 'HARD'
-						&& storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
-						unlock = true;
-				}
-				switch(achievementName)
-				{
-					case 'ur_bad':
-						if(ratingPercent < 0.2 && !practiceMode) {
-							unlock = true;
-						}
-					case 'ur_good':
-						if(ratingPercent >= 1 && !usedPractice) {
-							unlock = true;
-						}
-					case 'roadkill_enthusiast':
-						if(Achievements.henchmenDeath >= 100) {
-							unlock = true;
-						}
-					case 'oversinging':
-						if(boyfriend.holdTimer >= 10 && !usedPractice) {
-							unlock = true;
-						}
-					case 'hype':
-						if(!boyfriendIdled && !usedPractice) {
-							unlock = true;
-						}
-					case 'two_keys':
-						if(!usedPractice) {
-							var howManyPresses:Int = 0;
-							for (j in 0...keysPressed.length) {
-								if(keysPressed[j]) howManyPresses++;
-							}
-
-							if(howManyPresses <= 2) {
-								unlock = true;
-							}
-						}
-					case 'toastie':
-						if(/*ClientPrefs.framerate <= 60 &&*/ !ClientPrefs.shaders && ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing) {
-							unlock = true;
-						}
-					case 'debugger':
-						if(Paths.formatToSongPath(SONG.song) == 'test' && !usedPractice) {
-							unlock = true;
-						}
-				}
-
-				if(unlock) {
-					Achievements.unlockAchievement(achievementName);
-					return achievementName;
-				}
-			}
-		}
-		return null;
-	}
-	#end
 
 	var curLight:Int = -1;
 	var curLightEvent:Int = -1;

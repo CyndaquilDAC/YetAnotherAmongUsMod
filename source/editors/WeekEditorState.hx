@@ -286,9 +286,6 @@ class WeekEditorState extends MusicBeatState
 
 		weekBeforeInputText.text = weekFile.weekBefore;
 
-		difficultiesInputText.text = '';
-		if(weekFile.difficulties != null) difficultiesInputText.text = weekFile.difficulties;
-
 		lockedCheckbox.checked = !weekFile.startUnlocked;
 		lock.visible = lockedCheckbox.checked;
 		
@@ -413,8 +410,6 @@ class WeekEditorState extends MusicBeatState
 				updateText();
 			} else if(sender == weekBeforeInputText) {
 				weekFile.weekBefore = weekBeforeInputText.text.trim();
-			} else if(sender == difficultiesInputText) {
-				weekFile.difficulties = difficultiesInputText.text.trim();
 			}
 		}
 	}
