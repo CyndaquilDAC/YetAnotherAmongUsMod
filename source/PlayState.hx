@@ -424,6 +424,8 @@ class PlayState extends MusicBeatState
 					curStage = 'colorchange';
 				case 'post-irony':
 					curStage = 'jermhouse';
+				case 'reminiscence':
+					curStage = 'yellowplush';
 				default:
 					curStage = 'stage';
 			}
@@ -575,6 +577,8 @@ class PlayState extends MusicBeatState
 				beegee.loadGraphic(Paths.image('jermhouse'));
 				beegee.antialiasing = true;
 				add(beegee);
+			case 'yellowplush':
+				//nothing
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
