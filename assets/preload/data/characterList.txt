@@ -3,3 +3,5 @@ dad
 gf
 hider
 seeker
+spookungus
+yellow
