@@ -1,6 +1,5 @@
 package;
 
-import flixel.util.FlxColor;
 import flixel.FlxObject;
 import flixel.system.FlxAssets.FlxShader;
 

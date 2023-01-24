@@ -1,4 +1,4 @@
-package;
+package animateatlas;
 
 import animateatlas.JSONData.AtlasData;
 import openfl.display.BitmapData;
@@ -78,7 +78,7 @@ class Main extends Sprite {
 
 	public function addSpriteGirl(_) {
 		for (i in 0...1) {
-			var t = ss.createAnimation();
+			var t = ss.createAnimation(false, '');
 			t.x = mouseX + i * 20 * (-1 * i % 2);
 			t.y = mouseY + i * 20 * (-1 * i % 2);
 

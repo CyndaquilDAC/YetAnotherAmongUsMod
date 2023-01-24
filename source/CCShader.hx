@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
-import flixel.FlxBasic;
 import flixel.system.FlxAssets.FlxShader;
 
 class CCShader

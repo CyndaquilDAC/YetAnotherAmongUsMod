@@ -1,0 +1,22 @@
+{
+	"songs": [
+		["Thrill-of-The-Hunt", "seeker", [146, 113, 253]],
+		["Post-Irony", "jermer", [146, 113, 253]],
+		["Weird", "weird", [146, 113, 253]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "The Extras",
+	"weekBefore": "week1",
+	"weekName": "Extras",
+	"startUnlocked": true,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}

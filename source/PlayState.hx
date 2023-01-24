@@ -72,7 +72,7 @@ import sys.io.File;
 #end
 
 #if VIDEOS_ALLOWED
-import VideoHandler;
+//import VideoHandler;
 #end
 
 using StringTools;
@@ -426,6 +426,8 @@ class PlayState extends MusicBeatState
 					curStage = 'jermhouse';
 				case 'reminiscence':
 					curStage = 'yellowplush';
+				case 'weird':
+					curStage = 'white';
 				default:
 					curStage = 'stage';
 			}
@@ -579,6 +581,10 @@ class PlayState extends MusicBeatState
 				add(beegee);
 			case 'yellowplush':
 				//nothing
+			case 'white':
+				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+				fucksprite.scrollFactor.set();
+				add(fucksprite);
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
@@ -1279,13 +1285,13 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:VideoHandler = new VideoHandler();
+		/*var video:VideoHandler = new VideoHandler();
 		video.playVideo(filepath);
 		video.finishCallback = function()
-		{
+		{*/
 			startAndEnd();
-			return;
-		}
+			/*return;
+		}*/
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();

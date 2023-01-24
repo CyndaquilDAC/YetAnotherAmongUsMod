@@ -1,22 +1,13 @@
 package;
 
-import VideoSprite;
-import VideoHandler;
+//import VideoSprite;
+//import VideoHandler;
 #if desktop
 import Discord.DiscordClient;
 #end
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxSubState;
-import flixel.group.FlxGroup;
-import flixel.FlxCamera;
-import flixel.text.FlxText;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
-import lime.net.curl.CURLCode;
-import WeekData;
-import openfl.utils.Assets as OpenFlAssets;
 
 using StringTools;
 
@@ -62,14 +53,14 @@ class PlayVideoState extends MusicBeatState
 		bg.scrollFactor.set();
 		add(bg);
 
-		var video:VideoSprite = new VideoSprite(0, 0);
+		/*var video:VideoSprite = new VideoSprite(0, 0);
 		add(video);
 		video.playVideo(Paths.video(name));
 		video.finishCallback = function()
-		{
+		{*/
 			goToMenu();
-			return;
-		}
+			/*return;
+		}*/
 		#end
 	}
 }
