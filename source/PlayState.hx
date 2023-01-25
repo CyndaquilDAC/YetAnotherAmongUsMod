@@ -308,6 +308,8 @@ class PlayState extends MusicBeatState
 	var heatwaveShader:HeatwaveShader;
 	var caShader:ChromaticAbberation;
 
+	var shhBgMan:FlxSprite;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -428,6 +430,8 @@ class PlayState extends MusicBeatState
 					curStage = 'yellowplush';
 				case 'weird':
 					curStage = 'white';
+				case 'infamy':
+					curStage = 'purple';
 				default:
 					curStage = 'stage';
 			}
@@ -585,6 +589,19 @@ class PlayState extends MusicBeatState
 				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 				fucksprite.scrollFactor.set();
 				add(fucksprite);
+			case 'purple':
+				beegee = new FlxSprite(-531.4, -216.55);
+				beegee.loadGraphic(Paths.image('that-mira-room'));
+				beegee.antialiasing = true;
+				add(beegee);
+
+				shhBgMan = new FlxSprite(-331.65, 305);
+				shhBgMan.frames = Paths.getSparrowAtlas('shh_assasinate_purple');
+				shhBgMan.animation.addByPrefix('idle', 'shh guy idle', 24, false);
+				shhBgMan.animation.addByPrefix('kill', 'shh guy kills', 24, false);
+				shhBgMan.animation.play('idle', true);
+				shhBgMan.antialiasing = true;
+				add(shhBgMan);
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
@@ -3800,6 +3817,8 @@ class PlayState extends MusicBeatState
 
 	var lastBeatHit:Int = -1;
 
+	var shherCanBop:Bool = true;
+
 	override function beatHit()
 	{
 		super.beatHit();
@@ -3807,6 +3826,11 @@ class PlayState extends MusicBeatState
 		if(lastBeatHit >= curBeat) {
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
+		}
+
+		if(curBeat % 2 == 0 && shherCanBop && shhBgMan != null)
+		{
+			shhBgMan.animation.play('idle', true);
 		}
 
 		if(curBeat % 16 == 0 && SONG.song.toLowerCase() == 'shh')
@@ -3885,6 +3909,22 @@ class PlayState extends MusicBeatState
 
 		switch(SONG.song.toLowerCase())
 		{
+			case 'infamy':
+				switch(curBeat)
+				{
+					case 460:
+						shherCanBop = false;
+						shhBgMan.x -= 25;
+						shhBgMan.animation.play('kill', true);
+						dad.canDance = false;
+						dad.canSing = false;
+						dad.playAnim('scared', true);
+						defaultCamZoom -= 0.1;
+					case 464:
+						dad.playAnim('die', true);
+						FlxG.camera.flash(FlxColor.RED, 0.25);
+						defaultCamZoom += 0.2;
+				}
 			case 'fissure':
 				switch(curBeat)
 				{
