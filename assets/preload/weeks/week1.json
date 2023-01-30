@@ -1,11 +1,14 @@
 {
 	"songs": [
-		["Denied", "card", [146, 113, 253]],
-		["Shh", "blue", [146, 113, 253]],
-		["Reminiscence", "plush", [146, 113, 253]],
-		["Infamy", "purple", [146, 113, 253]],
-		["Fissure", "black", [146, 113, 253]],
-		["Indecision", "wardrobe", [146, 113, 253]]
+		["Shh", "blue", [15, 27, 130]],
+		["Denied", "card", [204, 212, 212]],
+		["Reminiscence", "plush", [255, 202, 62]],
+		["Fissure", "black", [168, 47, 64]],
+		["Indecision", "wardrobe", [158, 179, 217]],
+		["Infamy", "purple", [51, 16, 108]],
+		["Caninethereal", "rose", [146, 113, 253]],
+		["Accolades", "nana", [255, 254, 190]],
+		["Standoff", "gray", [146, 113, 253]]
 	],
 
 	"weekCharacters": [
