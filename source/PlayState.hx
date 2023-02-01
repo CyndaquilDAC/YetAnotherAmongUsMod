@@ -3450,8 +3450,14 @@ class PlayState extends MusicBeatState
 		});
 		combo = 0;
 		health -= daNote.missHealth * healthLoss;
-		
+
 		if(instakillOnMiss)
+		{
+			vocals.volume = 0;
+			doDeathCheck(true);
+		}
+
+		if(daNote.noteType == 'shield' || daNote.noteType == 'gun')
 		{
 			vocals.volume = 0;
 			doDeathCheck(true);
@@ -3553,7 +3559,15 @@ class PlayState extends MusicBeatState
 
 			if(char != null)
 			{
-				if (!note.isSustainNote && noteRows[note.mustPress?0:1][note.row].length > 1)
+				if(note.noteType == 'gun')
+				{
+					char.mostRecentRow = note.row;
+					char.playAnim('attack', true);
+					char.holdTimer = 0;
+					char.specialAnim = true;
+					char.heyTimer = 0.6;
+				}
+				else if (!note.isSustainNote && noteRows[note.mustPress?0:1][note.row].length > 1)
 				{
 					var chord = noteRows[note.mustPress?0:1][note.row];
 					var animNote = chord[0];
@@ -3647,7 +3661,15 @@ class PlayState extends MusicBeatState
 			if(!note.noAnimation) {
 				var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))];
 
-				if(note.gfNote)
+				if(note.noteType == 'shield')
+				{
+					boyfriend.mostRecentRow = note.row;
+					boyfriend.playAnim('dodge', true);
+					boyfriend.holdTimer = 0;
+					boyfriend.specialAnim = true;
+					boyfriend.heyTimer = 0.6;
+				}
+				else if(note.gfNote)
 				{
 					if(gf != null)
 					{

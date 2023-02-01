@@ -142,6 +142,11 @@ class Note extends FlxSprite
 						missHealth = 0.3;
 					}
 					hitCausesMiss = true;
+				case 'shield' | 'gun':
+					reloadNote('yaaum_special_notes');
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
 				case 'Alt Animation':
 					animSuffix = '-alt';
 				case 'No Animation':
@@ -268,6 +273,12 @@ class Note extends FlxSprite
 
 		var lastScaleY:Float = scale.y;
 		var blahblah:String = arraySkin.join('/');
+
+		if(prefix == 'yaaum_special_notes')
+		{
+			blahblah = 'yaaum_special_notes';
+		}
+
 		if(PlayState.isPixelStage) {
 			if(isSustainNote) {
 				loadGraphic(Paths.image('pixelUI/' + blahblah + 'ENDS'));
@@ -316,14 +327,22 @@ class Note extends FlxSprite
 		}
 	}
 
-	function loadNoteAnims() {
-		animation.addByPrefix(colArray[noteData] + 'Scroll', colArray[noteData] + '0');
-
-		if (isSustainNote)
+	function loadNoteAnims()
+	{
+		if(noteType == 'shield' || noteType == 'gun')
 		{
-			animation.addByPrefix('purpleholdend', 'pruple end hold'); // ?????
-			animation.addByPrefix(colArray[noteData] + 'holdend', colArray[noteData] + ' hold end');
-			animation.addByPrefix(colArray[noteData] + 'hold', colArray[noteData] + ' hold piece');
+			animation.addByPrefix(colArray[noteData] + 'Scroll', noteType + '0');
+		}
+		else
+		{
+			animation.addByPrefix(colArray[noteData] + 'Scroll', colArray[noteData] + '0');
+
+			if (isSustainNote)
+			{
+				animation.addByPrefix('purpleholdend', 'pruple end hold'); // ?????
+				animation.addByPrefix(colArray[noteData] + 'holdend', colArray[noteData] + ' hold end');
+				animation.addByPrefix(colArray[noteData] + 'hold', colArray[noteData] + ' hold piece');
+			}
 		}
 
 		setGraphicSize(Std.int(width * 0.7));

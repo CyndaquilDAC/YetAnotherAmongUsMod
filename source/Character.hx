@@ -215,6 +215,7 @@ class Character extends FlxSprite
 		if(animOffsets.exists('singLEFTmiss') || animOffsets.exists('singDOWNmiss') || animOffsets.exists('singUPmiss') || animOffsets.exists('singRIGHTmiss')) hasMissAnimations = true;
 		recalculateDanceIdle();
 		dance();
+		animation.finish();
 
 		if (isPlayer)
 		{
