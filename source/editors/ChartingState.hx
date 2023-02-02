@@ -540,13 +540,7 @@ class ChartingState extends MusicBeatState
 		player2DropDown.selectedLabel = _song.player2;
 		blockPressWhileScrolling.push(player2DropDown);
 
-		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('stages/'), Paths.mods(Paths.currentModDirectory + '/stages/'), Paths.getPreloadPath('stages/')];
-		for(mod in Paths.getGlobalMods())
-			directories.push(Paths.mods(mod + '/stages/'));
-		#else
 		var directories:Array<String> = [Paths.getPreloadPath('stages/')];
-		#end
 
 		tempMap.clear();
 		var stageFile:Array<String> = CoolUtil.coolTextFile(Paths.txt('stageList'));
@@ -558,7 +552,6 @@ class ChartingState extends MusicBeatState
 			}
 			tempMap.set(stageToCheck, true);
 		}
-		#if MODS_ALLOWED
 		for (i in 0...directories.length) {
 			var directory:String = directories[i];
 			if(FileSystem.exists(directory)) {
@@ -574,7 +567,6 @@ class ChartingState extends MusicBeatState
 				}
 			}
 		}
-		#end
 
 		if(stages.length < 1) stages.push('stage');
 

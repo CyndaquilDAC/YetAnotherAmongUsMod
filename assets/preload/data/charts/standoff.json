@@ -3337,7 +3337,7 @@
 		"player2": "gray",
 		"player3": null,
 		"song": "Standoff",
-		"stage": "stage",
+		"stage": "gray",
 		"needsVoices": true,
 		"validScore": true,
 		"bpm": 170,

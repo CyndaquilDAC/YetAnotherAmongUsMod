@@ -432,6 +432,8 @@ class PlayState extends MusicBeatState
 					curStage = 'white';
 				case 'infamy':
 					curStage = 'purple';
+				case 'standoff':
+					curStage = 'gray';
 				default:
 					curStage = 'stage';
 			}
@@ -602,6 +604,14 @@ class PlayState extends MusicBeatState
 				shhBgMan.animation.play('idle', true);
 				shhBgMan.antialiasing = true;
 				add(shhBgMan);
+			case 'gray':
+				beegee = new FlxSprite(-264.05, -58.7);
+				beegee.loadGraphic(Paths.image('grey_back'));
+				beegee.antialiasing = true;
+				add(beegee);
+				effgee = new FlxSprite(352.55, 470.3);
+				effgee.loadGraphic(Paths.image('grey_front'));
+				effgee.antialiasing = true;
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
@@ -632,6 +642,10 @@ class PlayState extends MusicBeatState
 		bfGhost.visible = false;
 		add(bfGhost);
 		add(boyfriendGroup);
+		if (curStage == 'gray')
+		{
+			add(effgee);
+		}
 
 		whiteThingy = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 		whiteThingy.screenCenter();
