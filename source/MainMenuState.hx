@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.display.FlxBackdrop;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -31,6 +32,9 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+
+	var starsBg:FlxBackdrop;
+	var starsFg:FlxBackdrop;
 	
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -39,7 +43,6 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
-	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
@@ -68,28 +71,31 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
-		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
-		bg.updateHitbox();
-		bg.screenCenter();
-		bg.antialiasing = ClientPrefs.globalAntialiasing;
+
+		var bg:FlxSprite = new FlxSprite();
+		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
+
+		starsBg = new FlxBackdrop(Paths.image('stars'));
+		starsBg.scale.set(1.25, 1.25);
+		starsBg.updateHitbox();
+		starsBg.x -= 150;
+		starsBg.y += 50;
+		starsBg.antialiasing = true;
+		starsBg.scrollFactor.set(0.25, 0.25);
+		starsBg.alpha = 0.75;
+		add(starsBg);
+
+		starsFg = new FlxBackdrop(Paths.image('stars'));
+		starsFg.scale.set(1.75, 1.75);
+		starsFg.updateHitbox();
+		starsFg.antialiasing = true;
+		add(starsFg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 		add(camFollowPos);
-
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.antialiasing = ClientPrefs.globalAntialiasing;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
 		
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -177,8 +183,6 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
-					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-
 					menuItems.forEach(function(spr:FlxSprite)
 					{
 						if (curSelected != spr.ID)
@@ -223,6 +227,18 @@ class MainMenuState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+
+		if(starsBg != null)
+		{
+			starsBg.x += (10 * elapsed);
+			starsBg.y += (10 * elapsed);
+		}
+
+		if(starsFg != null)
+		{
+			starsFg.x += (15 * elapsed);
+			starsFg.y += (15 * elapsed);
+		}
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
