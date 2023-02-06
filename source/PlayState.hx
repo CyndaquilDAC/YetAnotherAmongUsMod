@@ -430,6 +430,8 @@ class PlayState extends MusicBeatState
 					curStage = 'yellowplush';
 				case 'weird':
 					curStage = 'white';
+				case 'flicker':
+					curStage = 'flicker';
 				case 'infamy':
 					curStage = 'purple';
 				case 'standoff':
@@ -587,8 +589,9 @@ class PlayState extends MusicBeatState
 				add(beegee);
 			case 'yellowplush':
 				//nothing
-			case 'white':
+			case 'white' | 'flicker':
 				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+				fucksprite.screenCenter();
 				fucksprite.scrollFactor.set();
 				add(fucksprite);
 			case 'purple':
@@ -4196,6 +4199,7 @@ class PlayState extends MusicBeatState
 		ghost.y = player.y;
 		ghost.animation.play(animToPlay, true);
 		ghost.offset.set(player.animOffsets.get(animToPlay)[0], player.animOffsets.get(animToPlay)[1]);
+		ghost.color = FlxColor.fromRGB(player.healthColorArray[0], player.healthColorArray[1], player.healthColorArray[2]);
 		ghost.flipX = player.flipX;
 		ghost.flipY = player.flipY;
 		ghost.blend = HARDLIGHT;
