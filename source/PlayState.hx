@@ -436,6 +436,8 @@ class PlayState extends MusicBeatState
 					curStage = 'purple';
 				case 'standoff':
 					curStage = 'gray';
+				case 'accolades':
+					curStage = 'gameawards';
 				default:
 					curStage = 'stage';
 			}
@@ -589,6 +591,11 @@ class PlayState extends MusicBeatState
 				add(beegee);
 			case 'yellowplush':
 				//nothing
+			case 'gameawards':
+				beegee = new FlxSprite(0, 65);
+				beegee.loadGraphic(Paths.image('gameawards'));
+				beegee.antialiasing = true;
+				add(beegee);
 			case 'white' | 'flicker':
 				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 				fucksprite.screenCenter();
