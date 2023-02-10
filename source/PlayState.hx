@@ -530,12 +530,11 @@ class PlayState extends MusicBeatState
 				beegee = new FlxSprite(-95, -47);
 				beegee.loadGraphic(Paths.image('thrill/bg'));
 				beegee.antialiasing = true;
-				beegee.scrollFactor.set(0, 0);
+				beegee.scrollFactor.set(0.9, 0.9);
 				add(beegee);
 				effgee = new FlxSprite(-162, -122);
 				effgee.loadGraphic(Paths.image('thrill/fg'));
 				effgee.antialiasing = true;
-				effgee.scrollFactor.set(0, 0);
 			case 'shh':
 				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
 				beegee.antialiasing = true;
@@ -644,9 +643,8 @@ class PlayState extends MusicBeatState
 		if (curStage == 'thrill')
 		{
 			add(effgee);
-			dadGroup.scrollFactor.set(0, 0);
-			boyfriendGroup.scrollFactor.set(0, 0);
-			gfGroup.scrollFactor.set(0, 0);
+			dadGhost.scrollFactor.set(0.9, 0.9);
+			dadGroup.scrollFactor.set(0.9, 0.9);
 		}
 		bfGhost = new FlxSprite();
 		bfGhost.visible = false;
@@ -2797,12 +2795,21 @@ class PlayState extends MusicBeatState
 			camFollow.x += dad.cameraPosition[0] + opponentCameraOffset[0];
 			camFollow.y += dad.cameraPosition[1] + opponentCameraOffset[1];
 			tweenCamIn();
+			if(curStage == 'thrill')
+			{
+				defaultCamZoom = 1.25;
+			}
 		}
 		else
 		{
 			camFollow.set(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
 			camFollow.x -= boyfriend.cameraPosition[0] - boyfriendCameraOffset[0];
 			camFollow.y += boyfriend.cameraPosition[1] + boyfriendCameraOffset[1];
+
+			if(curStage == 'thrill')
+			{
+				defaultCamZoom = 1.1;
+			}
 
 			if (Paths.formatToSongPath(SONG.song) == 'tutorial' && cameraTwn == null && FlxG.camera.zoom != 1)
 			{

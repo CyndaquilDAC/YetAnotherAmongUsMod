@@ -14,7 +14,7 @@
 		{
 			"loop": false,
 			"offsets": [
-				240,
+				170,
 				0
 			],
 			"anim": "singLEFT",
@@ -25,7 +25,7 @@
 		{
 			"loop": false,
 			"offsets": [
-				151,
+				101,
 				0
 			],
 			"anim": "singDOWN",
@@ -36,7 +36,7 @@
 		{
 			"loop": false,
 			"offsets": [
-				-3,
+				-73,
 				97
 			],
 			"anim": "singUP",
@@ -47,8 +47,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-60,
-				0
+				-140,
+				10
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
@@ -70,8 +70,8 @@
 		153
 	],
 	"camera_position": [
-		-170,
-		-70
+		-220,
+		-40
 	],
 	"sing_duration": 4.00000000000001,
 	"scale": 1
