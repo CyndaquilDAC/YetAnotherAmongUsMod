@@ -1,5 +1,6 @@
 package;
 
+import flixel.system.FlxAssets.FlxGraphicAsset;
 import openfl.system.System;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -227,6 +228,13 @@ class Paths
 	{
 		// streamlined the assets process more
 		var returnAsset:FlxGraphic = returnGraphic(key, library);
+		return returnAsset;
+	}
+
+	inline static public function imageRandom(key:String, min:Int, max:Int, ?library:String):FlxGraphic
+	{
+		// streamlined the assets process more
+		var returnAsset:FlxGraphic = returnGraphic(key + FlxG.random.int(min, max), library);
 		return returnAsset;
 	}
 

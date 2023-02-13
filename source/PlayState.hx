@@ -312,6 +312,8 @@ class PlayState extends MusicBeatState
 
 	var memeGroup:FlxTypedGroup<FlxSprite>;
 
+	var elapsedtime:Float = 0;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -2123,6 +2125,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		elapsedtime += elapsed;
+
 		super.update(elapsed);
 
 		for(waht in memeGroup.members)
@@ -2132,11 +2136,11 @@ class PlayState extends MusicBeatState
 				var dingery = 1;
 				if(waht.x > FlxG.width)
 				{
-					dingery = -1;
+					//dingery = -1;
 				}
-				waht.x += Math.cos(elapsed * 2 * dingery) + FlxG.random.float(1, 9);
-				waht.y += Math.sin(elapsed * 1 * dingery) + FlxG.random.float(1, 9);
-				waht.angle += Math.cos(elapsed * 0.75);
+				waht.x += Math.cos(elapsedtime * 0.4 * dingery)/* + FlxG.random.float(1, 9)*/;
+				waht.y += Math.sin(elapsedtime * 0.5 * dingery)/* + FlxG.random.float(1, 9)*/;
+				waht.angle += Math.cos(elapsedtime * 0.75);
 			}
 		}
 
@@ -3953,11 +3957,11 @@ class PlayState extends MusicBeatState
 
 		if(curBeat % 64 == 0 && SONG.song.toLowerCase() == 'post-irony')
 		{
-			var memestMemes:FlxSprite = new FlxSprite(FlxG.random.float(0, FlxG.width - 105), FlxG.random.float(0, FlxG.height - 105)).loadGraphic(Paths.image('danks/' + Std.string(FlxG.random.int(0, 16))));
-			memestMemes.setGraphicSize(210);
+			trace('meme, pleeeeassse dont crashhhh');
+			var memestMemes:FlxSprite = new FlxSprite(FlxG.random.float(FlxG.width - 256, FlxG.width + 500), FlxG.random.float(FlxG.height - 256, FlxG.height + 500)).loadGraphic(Paths.imageRandom('danks/', 0, 16));
+			memestMemes.setGraphicSize(420); //so meme
 			memestMemes.alpha = 0;
 			memeGroup.add(memestMemes);
-			add(memestMemes);
 			FlxTween.tween(memestMemes, {alpha: 1}, 4, {type: PINGPONG});
 		}
 
