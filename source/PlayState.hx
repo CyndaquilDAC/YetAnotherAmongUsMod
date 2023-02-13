@@ -310,6 +310,8 @@ class PlayState extends MusicBeatState
 
 	var shhBgMan:FlxSprite;
 
+	var memeGroup:FlxTypedGroup<FlxSprite>;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -588,6 +590,8 @@ class PlayState extends MusicBeatState
 				beegee.loadGraphic(Paths.image('jermhouse'));
 				beegee.antialiasing = true;
 				add(beegee);
+				memeGroup = new FlxTypedGroup<FlxSprite>();
+				add(memeGroup);
 			case 'yellowplush':
 				//nothing
 			case 'gameawards':
@@ -2120,6 +2124,21 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+
+		for(waht in memeGroup.members)
+		{
+			if(waht != null)
+			{
+				var dingery = 1;
+				if(waht.x > FlxG.width)
+				{
+					dingery = -1;
+				}
+				waht.x += Math.cos(elapsed * 2 * dingery) + FlxG.random.float(1, 9);
+				waht.y += Math.sin(elapsed * 1 * dingery) + FlxG.random.float(1, 9);
+				waht.angle += Math.cos(elapsed * 0.75);
+			}
+		}
 
 		setOnLuas('curDecStep', curDecStep);
 		setOnLuas('curDecBeat', curDecBeat);
@@ -3932,6 +3951,16 @@ class PlayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('shh'), 0.75);
 		}
 
+		if(curBeat % 64 == 0 && SONG.song.toLowerCase() == 'post-irony')
+		{
+			var memestMemes:FlxSprite = new FlxSprite(FlxG.random.float(0, FlxG.width - 105), FlxG.random.float(0, FlxG.height - 105)).loadGraphic(Paths.image('danks/' + Std.string(FlxG.random.int(0, 16))));
+			memestMemes.setGraphicSize(210);
+			memestMemes.alpha = 0;
+			memeGroup.add(memestMemes);
+			add(memestMemes);
+			FlxTween.tween(memestMemes, {alpha: 1}, 4, {type: PINGPONG});
+		}
+
 		if (generatedMusic)
 		{
 			notes.sort(FlxSort.byY, ClientPrefs.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
@@ -3958,6 +3987,21 @@ class PlayState extends MusicBeatState
 
 		switch(SONG.song.toLowerCase())
 		{
+			case 'post-irony':
+				switch(curBeat)
+				{
+					case 328:
+						boyfriendGroup.remove(boyfriend);
+						boyfriend = new Boyfriend(dad.x, dad.y, 'jerma-player');
+						boyfriendGroup.add(boyfriend);
+						dadGroup.remove(dad);
+						dad = new Character(boyfriend.x - 256, boyfriend.y, 'bf', false);
+						dadGroup.add(dad);
+						iconP1.changeIcon(boyfriend.healthIcon);
+						iconP2.changeIcon(dad.healthIcon);
+						reloadHealthBarColors();
+						FlxG.camera.flash();
+				}
 			case 'infamy':
 				switch(curBeat)
 				{
