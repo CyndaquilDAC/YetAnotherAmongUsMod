@@ -3958,7 +3958,7 @@ class PlayState extends MusicBeatState
 		if(curBeat % 64 == 0 && SONG.song.toLowerCase() == 'post-irony')
 		{
 			trace('meme, pleeeeassse dont crashhhh');
-			var memestMemes:FlxSprite = new FlxSprite(FlxG.random.float(FlxG.width * -0.5, FlxG.width + 500), FlxG.random.float(FlxG.height * -0.5, FlxG.height + 500)).loadGraphic(Paths.imageRandom('danks/', 0, 16));
+			var memestMemes:FlxSprite = new FlxSprite(FlxG.random.float(-250, FlxG.width + 500), FlxG.random.float(-110, FlxG.height + 500)).loadGraphic(Paths.imageRandom('danks/', 0, 16));
 			memestMemes.setGraphicSize(420); //so meme
 			memestMemes.alpha = 0;
 			memeGroup.add(memestMemes);
