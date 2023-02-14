@@ -2,8 +2,8 @@
 	"animations": [
 		{
 			"offsets": [
-				-2,
-				-11
+				0,
+				0
 			],
 			"loop": false,
 			"anim": "sad",
@@ -68,7 +68,7 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/GF_assets",
+	"image": "characters/mommygf",
 	"position": [
 		0,
 		0
