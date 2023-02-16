@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.editors.spine.FlxSpine;
 import options.OptionsState;
 import options.BaseOptionsMenu;
 import flixel.addons.ui.FlxUIButton;
@@ -38,6 +39,9 @@ class MainMenuState extends MusicBeatState
 	var freeButt:FlxUIButton;
 	var optButt:FlxSprite;
 
+	var titleGuys:Array<FlxSprite>;
+	var titleSpeeds:Array<Float>;
+
 	override function create()
 	{
 		WeekData.loadTheFirstEnabledMod();
@@ -73,6 +77,11 @@ class MainMenuState extends MusicBeatState
 		starsFg.updateHitbox();
 		starsFg.antialiasing = true;
 		add(starsFg);
+
+		/*for(i in 0...4)
+		{
+			var guyNew = new FlxSprite()
+		}*/
 
 		var logoStill = new FlxSprite(0, 25).loadGraphic(Paths.image('logostill'));
 		logoStill.screenCenter(X);
