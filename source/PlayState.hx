@@ -2507,14 +2507,21 @@ class PlayState extends MusicBeatState
 				FlxG.sound.music.stop();
 
 				persistentUpdate = false;
-				persistentDraw = false;
+				persistentDraw = (GameOverSubstate.characterName != 'siiva-bf-dead');
 				for (tween in modchartTweens) {
 					tween.active = true;
 				}
 				for (timer in modchartTimers) {
 					timer.active = true;
 				}
-				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x - boyfriend.positionArray[0], boyfriend.getScreenPosition().y - boyfriend.positionArray[1], camFollowPos.x, camFollowPos.y));
+
+				if(GameOverSubstate.characterName != 'siiva-bf-dead')
+				{
+					GameOverSubstate.characterName = boyfriend.curCharacter;
+					boyfriend.visible = false;
+					camHUD.visible = false;
+				}
+				openSubState(new GameOverSubstate(boyfriend.x, boyfriend.y, camFollowPos.x, camFollowPos.y));
 
 				// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
