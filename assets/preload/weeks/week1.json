@@ -1,6 +1,6 @@
 {
 	"songs": [
-		["Red-Song", "red", [158, 179, 217]],
+		["Initial", "red", [158, 179, 217]],
 		["Shh", "blue", [15, 27, 130]],
 		["Denied", "card", [204, 212, 212]],
 		["Squashin", "pink", [158, 179, 217]],
@@ -8,15 +8,15 @@
 		["Reminiscence", "plush", [255, 202, 62]],
 		["Fissure", "black", [168, 47, 64]],
 		["Indecision", "wardrobe", [158, 179, 217]],
-		["Brown-Song", "brown", [255, 254, 190]],
+		["Drifting", "brown", [255, 254, 190]],
 		["Flicker", "cyan", [255, 254, 190]],
-		["Lime-Song", "lime", [255, 254, 190]],
+		["Irrelevancy", "lime", [255, 254, 190]],
 		["Infamy", "purple", [51, 16, 108]],
-		["Maroon-Song", "maroon", [255, 254, 190]],
-		["Caninethereal", "rose", [146, 113, 253]],
+		["Decoy", "maroon", [255, 254, 190]],
+		["Messed-Up", "rose", [146, 113, 253]],
 		["Accolades", "nana", [255, 254, 190]],
 		["Standoff", "gray", [51, 52, 62]],
-		["Tan-Song", "tan", [255, 254, 190]],
+		["Bare-Minimum", "tan", [255, 254, 190]],
 		["Dead-Meat", "coral", [255, 254, 190]]
 	],
 
