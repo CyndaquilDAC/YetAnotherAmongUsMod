@@ -442,6 +442,8 @@ class PlayState extends MusicBeatState
 					curStage = 'gray';
 				case 'accolades':
 					curStage = 'gameawards';
+				case 'initial':
+					curStage = 'storage';
 				default:
 					curStage = 'stage';
 			}
@@ -585,6 +587,10 @@ class PlayState extends MusicBeatState
 				add(heatwaveShader);
 			case 'colorchange':
 				beegee = new FlxSprite(-97, -68).loadGraphic(Paths.image('yaaum_dropship_white'));
+				beegee.antialiasing = true;
+				add(beegee);
+			case 'storage':
+				beegee = new FlxSprite(-284, -226).loadGraphic(Paths.image('storage'));
 				beegee.antialiasing = true;
 				add(beegee);
 			case 'jermhouse':
