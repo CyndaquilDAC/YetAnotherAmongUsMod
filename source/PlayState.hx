@@ -221,6 +221,7 @@ class PlayState extends MusicBeatState
 
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
+	public var botplayImg:FlxSprite;
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
@@ -941,11 +942,17 @@ class PlayState extends MusicBeatState
 		botplayTxt.setFormat(Paths.font("arial.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.5;
-		botplayTxt.visible = cpuControlled;
+		botplayTxt.visible = false;
 		add(botplayTxt);
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
+
+		botplayImg = new FlxSprite(1120.35, 555.15).loadGraphic(Paths.image('botplay'));
+		botplayImg.scrollFactor.set();
+		botplayImg.visible = cpuControlled;
+		botplayImg.antialiasing = true;
+		add(botplayImg);
 
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
@@ -956,6 +963,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
+		botplayImg.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];

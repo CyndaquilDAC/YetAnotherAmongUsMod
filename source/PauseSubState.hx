@@ -223,8 +223,8 @@ class PauseSubState extends MusicBeatSubstate
 				restartSong();
 			case 'Toggle Botplay':
 				PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
-				PlayState.instance.botplayTxt.visible = PlayState.instance.cpuControlled;
-				PlayState.instance.botplayTxt.alpha = 1;
+				PlayState.instance.botplayImg.visible = PlayState.instance.cpuControlled;
+				PlayState.instance.botplayImg.alpha = 1;
 				PlayState.instance.botplaySine = 0;
 			case "Exit to menu":
 				FlxG.mouse.visible = false;
