@@ -419,11 +419,11 @@ class PlayState extends MusicBeatState
 		{
 			switch (songName)
 			{
-				case 'thrill-of-the-hunt':
+				case 'thrill-of-the-hunt' | 'thrill-of-the-hunt-erect':
 					curStage = 'thrill';
 				case 'displacement':
 					curStage = 'displace';
-				case 'shh':
+				case 'shh' | 'shh-erect':
 					curStage = 'shh';
 				case 'fissure':
 					curStage = 'fissure';
@@ -546,7 +546,7 @@ class PlayState extends MusicBeatState
 				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
 				beegee.antialiasing = true;
 				add(beegee);
-				shushIndi = new FlxSprite(1120, 555).loadGraphic(Paths.image('blue_shh'));
+				shushIndi = new FlxSprite(10, 555).loadGraphic(Paths.image('blue_shh'));
 				shushIndi.color = FlxColor.BLACK;
 				shushIndi.antialiasing = true;
 				shushIndi.cameras = [camHUD];
@@ -3939,7 +3939,7 @@ class PlayState extends MusicBeatState
 			shhBgMan.animation.play('idle', true);
 		}
 
-		if(curBeat % 16 == 0 && SONG.song.toLowerCase() == 'shh')
+		if(curBeat % 16 == 0 && SONG.song.toLowerCase().startsWith('shh'))
 		{
 			shushed = !shushed;
 
@@ -3989,7 +3989,7 @@ class PlayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('shh'), 0.75);
 		}
 
-		if(curBeat % 64 == 0 && SONG.song.toLowerCase() == 'post-irony')
+		if(curBeat % 64 == 0 && SONG.song.toLowerCase().startsWith('post-irony'))
 		{
 			//trace('meme, pleeeeassse dont crashhhh');
 			var memestMemes:FlxSprite = new FlxSprite(FlxG.random.float(-250, FlxG.width + 500), FlxG.random.float(-110, FlxG.height + 500)).loadGraphic(Paths.imageRandom('danks/', 0, 16));
@@ -4025,7 +4025,7 @@ class PlayState extends MusicBeatState
 
 		switch(SONG.song.toLowerCase())
 		{
-			case 'post-irony':
+			case 'post-irony' | 'post-irony-erect':
 				switch(curBeat)
 				{
 					case 328:
@@ -4040,7 +4040,7 @@ class PlayState extends MusicBeatState
 						reloadHealthBarColors();
 						FlxG.camera.flash();
 				}
-			case 'infamy':
+			case 'infamy' | 'infamy-erect':
 				switch(curBeat)
 				{
 					case 460:
@@ -4056,7 +4056,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.RED, 0.25);
 						defaultCamZoom += 0.2;
 				}
-			case 'fissure':
+			case 'fissure' | 'fissure-erect':
 				switch(curBeat)
 				{
 					case 356:
@@ -4089,7 +4089,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.3;
 						FlxG.camera.flash();
 				}
-			case 'obligatory':
+			case 'obligatory' | 'obligatory-erect':
 				switch(curBeat)
 				{
 					case 192:
@@ -4101,7 +4101,7 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim('firstDeath', true);
 						FlxG.camera.flash(FlxColor.RED);
 				}
-			case 'thrill-of-the-hunt':
+			case 'thrill-of-the-hunt' | 'thrill-of-the-hunt-erect':
 				switch(curBeat)
 				{
 					case 388:

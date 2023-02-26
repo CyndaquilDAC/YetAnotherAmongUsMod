@@ -54,6 +54,8 @@ class FreeplayState extends MusicBeatState
 	var camFollowPos:FlxObject;
 	var camFollow:FlxPoint;
 
+	var erectSuffix:String = '';
+
 	override function create()
 	{
 		//Paths.clearStoredMemory();
@@ -267,7 +269,12 @@ class FreeplayState extends MusicBeatState
 			ratingSplit[1] += '0';
 		}
 
-		scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
+		var erectPrething:String = 'NORMAL MODE (TAB)\n';
+		if(erectSuffix == '-erect')
+		{
+			erectPrething = 'ERECT MODE (TAB)\n';
+		}
+		scoreText.text = erectPrething + 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
 		positionHighscore();
 
 		var upP = controls.UI_UP_P;
@@ -321,6 +328,19 @@ class FreeplayState extends MusicBeatState
 			MusicBeatState.switchState(new MainMenuState());
 		}
 
+		if(FlxG.keys.justPressed.TAB)
+		{
+			if(erectSuffix == '-erect')
+			{
+				erectSuffix = '';
+			}
+			else
+			{
+				erectSuffix = '-erect';
+			}
+			changeSelection();
+		}
+
 		if(ctrl)
 		{
 			persistentUpdate = false;
@@ -334,8 +354,8 @@ class FreeplayState extends MusicBeatState
 				destroyFreeplayVocals();
 				FlxG.sound.music.volume = 0;
 				Paths.currentModDirectory = songs[curSelected].folder;
-				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase());
-				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase() + erectSuffix);
+				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase() + erectSuffix);
 				if (PlayState.SONG.needsVoices)
 					vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
 				else
@@ -355,7 +375,7 @@ class FreeplayState extends MusicBeatState
 		else if (accepted)
 		{
 			persistentUpdate = false;
-			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
+			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName + erectSuffix);
 			var poop:String = Highscore.formatSong(songLowercase);
 			/*#if MODS_ALLOWED
 			if(!sys.FileSystem.exists(Paths.modsJson(songLowercase + '/' + poop)) && !sys.FileSystem.exists(Paths.json(songLowercase + '/' + poop))) {
