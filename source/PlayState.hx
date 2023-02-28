@@ -638,7 +638,7 @@ class PlayState extends MusicBeatState
 
 		switch(Paths.formatToSongPath(SONG.song))
 		{
-			case 'obligatory':
+			case 'obligatory' | 'obligatory-erect':
 				GameOverSubstate.characterName = 'siiva-bf-dead';
 		}
 
@@ -748,7 +748,7 @@ class PlayState extends MusicBeatState
 
 			switch(Paths.formatToSongPath(SONG.song))
 			{
-				case 'obligatory':
+				case 'obligatory' | 'obligatory-erect':
 					gfVersion = 'siiva-gf';
 				case 'stress':
 					gfVersion = 'pico-speaker';
