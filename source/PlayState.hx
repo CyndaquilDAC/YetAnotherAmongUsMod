@@ -419,31 +419,33 @@ class PlayState extends MusicBeatState
 		{
 			switch (songName)
 			{
+				case 'overturned' | 'overturned-erect':
+					curStage = 'olive';
 				case 'thrill-of-the-hunt' | 'thrill-of-the-hunt-erect':
 					curStage = 'thrill';
-				case 'displacement':
+				case 'displacement' | 'displacement-erect':
 					curStage = 'displace';
 				case 'shh' | 'shh-erect':
 					curStage = 'shh';
-				case 'fissure':
+				case 'fissure' | 'fissure-erect':
 					curStage = 'fissure';
-				case 'indecision':
+				case 'indecision' | 'indecision-erect':
 					curStage = 'colorchange';
-				case 'post-irony':
+				case 'post-irony' | 'post-irony-erect':
 					curStage = 'jermhouse';
-				case 'reminiscence':
+				case 'reminiscence' | 'reminiscence-erect':
 					curStage = 'yellowplush';
-				case 'weird':
+				case 'weird' | 'weird-erect':
 					curStage = 'white';
-				case 'flicker':
+				case 'flicker' | 'flicker-erect':
 					curStage = 'flicker';
-				case 'infamy':
+				case 'infamy' | 'infamy-erect':
 					curStage = 'purple';
-				case 'standoff':
+				case 'standoff' | 'standoff-erect':
 					curStage = 'gray';
-				case 'accolades':
+				case 'accolades' | 'accolades-erect':
 					curStage = 'gameawards';
-				case 'initial':
+				case 'initial' | 'initial-erect':
 					curStage = 'storage';
 				default:
 					curStage = 'stage';
@@ -580,6 +582,13 @@ class PlayState extends MusicBeatState
 				add(statey);
 				statey.alpha = 0;
 
+				caShader = new ChromaticAbberation(0);
+				add(caShader);
+				caShader.amount = -0.2;
+
+				heatwaveShader = new HeatwaveShader();
+				add(heatwaveShader);
+			case 'olive':
 				caShader = new ChromaticAbberation(0);
 				add(caShader);
 				caShader.amount = -0.2;
@@ -4025,6 +4034,30 @@ class PlayState extends MusicBeatState
 
 		switch(SONG.song.toLowerCase())
 		{
+			case 'overturned' | 'overturned-erect':
+				switch(curBeat)
+				{
+					case 256:
+						dadGroup.remove(dad);
+						dad = new Character(dad.x, dad.y, 'olive-2', false);
+						dadGroup.add(dad);
+						FlxG.camera.flash();
+					case 384:
+						dadGroup.remove(dad);
+						dad = new Character(dad.x, dad.y, 'olive-3', false);
+						dadGroup.add(dad);
+						defaultCamZoom += 0.025;
+						FlxG.camera.setFilters([new ShaderFilter(heatwaveShader.shader), new ShaderFilter(caShader.shader)]);
+						camHUD.setFilters([new ShaderFilter(heatwaveShader.shader)]);
+						FlxG.camera.flash();
+					case 400 | 416 | 432:
+						defaultCamZoom += 0.025;
+					case 448:
+						defaultCamZoom -= 0.025 * 4;
+						FlxG.camera.flash();
+					case 512:
+						FlxG.camera.flash();
+				}
 			case 'post-irony' | 'post-irony-erect':
 				switch(curBeat)
 				{
