@@ -589,6 +589,9 @@ class PlayState extends MusicBeatState
 				heatwaveShader = new HeatwaveShader();
 				add(heatwaveShader);
 			case 'olive':
+				addCharacterToList('olive-2', 0);
+				addCharacterToList('olive-3', 0);
+
 				caShader = new ChromaticAbberation(0);
 				add(caShader);
 				caShader.amount = -0.2;
