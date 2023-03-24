@@ -3686,7 +3686,12 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					char.playAnim(animToPlay, true);
+					var holdStartFrame:Int = 0;
+					if(SONG.song.toLowerCase() == 'post-irony' && note.isSustainNote)
+					{
+						holdStartFrame = 2;
+					}
+					char.playAnim(animToPlay, true, false, holdStartFrame);
 				}
 				char.holdTimer = 0;
 			}
@@ -3798,7 +3803,12 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						boyfriend.playAnim(animToPlay + note.animSuffix, true);
+						var holdStartFrame:Int = 0;
+						if(SONG.song.toLowerCase() == 'post-irony' && note.isSustainNote)
+						{
+							holdStartFrame = 2;
+						}
+						boyfriend.playAnim(animToPlay + note.animSuffix, true, false, holdStartFrame);
 					}
 					
 					boyfriend.holdTimer = 0;
