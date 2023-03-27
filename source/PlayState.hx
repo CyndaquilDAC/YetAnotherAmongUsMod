@@ -552,6 +552,12 @@ class PlayState extends MusicBeatState
 				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
 				beegee.antialiasing = true;
 				add(beegee);
+
+				miraYellowOverlay = new FlxSprite(-550, -300).loadGraphic(Paths.image('red_streak'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = SCREEN;
+				miraYellowOverlay.alpha = 0.5;
+
 				shushIndi = new FlxSprite(10, 555).loadGraphic(Paths.image('blue_shh'));
 				shushIndi.color = FlxColor.BLACK;
 				shushIndi.antialiasing = true;
@@ -565,6 +571,11 @@ class PlayState extends MusicBeatState
 				beegee.updateHitbox();
 				beegee.screenCenter();
 				add(beegee);
+
+				miraYellowOverlay = new FlxSprite(-600, -200).loadGraphic(Paths.image('red_streak'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = SCREEN;
+				miraYellowOverlay.alpha = 0.5;
 			case 'fissure':
 				beegee = new FlxSprite(-506, -136);
 				beegee.loadGraphic(Paths.image('mira_hall'));
