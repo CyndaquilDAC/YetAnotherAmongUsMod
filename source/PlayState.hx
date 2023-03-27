@@ -315,6 +315,10 @@ class PlayState extends MusicBeatState
 
 	var elapsedtime:Float = 0;
 
+	var miraYellowOverlay:FlxSprite;
+
+	var gameAwardsLites:FlxSprite;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -620,6 +624,14 @@ class PlayState extends MusicBeatState
 				beegee.loadGraphic(Paths.image('gameawards'));
 				beegee.antialiasing = true;
 				add(beegee);
+
+				miraYellowOverlay = new FlxSprite(0, 65).loadGraphic(Paths.image('gameawards_blue'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = SCREEN;
+
+				gameAwardsLites = new FlxSprite(0, 65).loadGraphic(Paths.image('gameawards_yellow'));
+				gameAwardsLites.antialiasing = true;
+				gameAwardsLites.blend = OVERLAY;
 			case 'white' | 'flicker':
 				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 				fucksprite.screenCenter();
@@ -638,6 +650,11 @@ class PlayState extends MusicBeatState
 				shhBgMan.animation.play('idle', true);
 				shhBgMan.antialiasing = true;
 				add(shhBgMan);
+
+				miraYellowOverlay = new FlxSprite(-531.4, -216.55).loadGraphic(Paths.image('mira_room_yellow'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = HARDLIGHT;
+				miraYellowOverlay.alpha = 0.25;
 			case 'gray':
 				beegee = new FlxSprite(-264.05, -58.7);
 				beegee.loadGraphic(Paths.image('grey_back'));
@@ -678,6 +695,16 @@ class PlayState extends MusicBeatState
 		if (curStage == 'gray')
 		{
 			add(effgee);
+		}
+
+		if(miraYellowOverlay != null)
+		{
+			add(miraYellowOverlay);
+		}
+
+		if(gameAwardsLites != null)
+		{
+			add(gameAwardsLites);
 		}
 
 		whiteThingy = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
