@@ -643,6 +643,11 @@ class PlayState extends MusicBeatState
 				gameAwardsLites = new FlxSprite(0, 65).loadGraphic(Paths.image('gameawards_yellow'));
 				gameAwardsLites.antialiasing = true;
 				gameAwardsLites.blend = OVERLAY;
+			case 'pretend':
+				beegee = new FlxSprite(-330, -167);
+				beegee.loadGraphic(Paths.image('pretend'));
+				beegee.antialiasing = true;
+				add(beegee);
 			case 'white' | 'flicker':
 				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 				fucksprite.screenCenter();
