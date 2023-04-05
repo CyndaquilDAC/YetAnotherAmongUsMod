@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import editors.ChartingState;
 
@@ -92,6 +93,8 @@ class Note extends FlxSprite
 
 	public var hitsoundDisabled:Bool = false;
 
+	public var noteSpeedMultiplier:Float = 1;
+
 	private function set_multSpeed(value:Float):Float {
 		resizeByRatio(value / multSpeed);
 		multSpeed = value;
@@ -182,6 +185,18 @@ class Note extends FlxSprite
 
 		this.noteData = noteData;
 
+		if(PlayState.instance != null)
+		{
+			if(PlayState.SONG.song.toLowerCase().endsWith('cash-cow') && !sustainNote)
+			{
+				noteSpeedMultiplier = FlxG.random.float(0.75, 3.25);
+			}
+			else if(sustainNote)
+			{
+				noteSpeedMultiplier = prevNote.noteSpeedMultiplier;
+			}
+		}
+
 		if(noteData > -1) {
 			texture = '';
 			colorSwap = new ColorSwap();
@@ -226,7 +241,7 @@ class Note extends FlxSprite
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
 				if(PlayState.instance != null)
 				{
-					prevNote.scale.y *= PlayState.instance.songSpeed;
+					prevNote.scale.y *= (PlayState.instance.songSpeed * prevNote.noteSpeedMultiplier);
 				}
 
 				if(PlayState.isPixelStage) {
