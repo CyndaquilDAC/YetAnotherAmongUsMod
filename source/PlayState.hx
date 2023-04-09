@@ -658,6 +658,9 @@ class PlayState extends MusicBeatState
 				fucksprite.screenCenter();
 				fucksprite.scrollFactor.set();
 				add(fucksprite);
+
+				effgee = new FlxSprite().loadGraphic(Paths.image('weird_discord'));
+				effgee.scrollFactor.set();
 			case 'purple':
 				beegee = new FlxSprite(-531.4, -216.55);
 				beegee.loadGraphic(Paths.image('that-mira-room'));
@@ -717,7 +720,7 @@ class PlayState extends MusicBeatState
 		bfGhost.visible = false;
 		add(bfGhost);
 		add(boyfriendGroup);
-		if (curStage == 'gray')
+		if (curStage == 'gray' || SONG.song.toLowerCase().startsWith('weird'))
 		{
 			add(effgee);
 		}
