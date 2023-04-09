@@ -648,6 +648,11 @@ class PlayState extends MusicBeatState
 				beegee.loadGraphic(Paths.image('pretend'));
 				beegee.antialiasing = true;
 				add(beegee);
+
+				miraYellowOverlay = new FlxSprite(-330, -167).loadGraphic(Paths.image('pretend_overtop'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = SCREEN;
+				miraYellowOverlay.alpha = 0.25;
 			case 'white' | 'flicker':
 				var fucksprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 				fucksprite.screenCenter();
@@ -679,6 +684,10 @@ class PlayState extends MusicBeatState
 				effgee = new FlxSprite(352.55, 470.3);
 				effgee.loadGraphic(Paths.image('grey_front'));
 				effgee.antialiasing = true;
+				miraYellowOverlay = new FlxSprite(-264.05, -58.7).loadGraphic(Paths.image('grey_over'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = SCREEN;
+				miraYellowOverlay.alpha = 0.3;
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
