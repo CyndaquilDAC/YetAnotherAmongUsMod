@@ -1,103 +1,131 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				188,
 				78
 			],
-			"loop": false,
-			"anim": "singLEFT-alt",
 			"fps": 24,
-			"name": "altleft",
-			"indices": []
+			"anim": "singLEFT-alt",
+			"indices": [],
+			"name": "altleft"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				13,
 				-130
 			],
-			"loop": false,
-			"anim": "singDOWN-alt",
 			"fps": 24,
-			"name": "altdown",
-			"indices": []
+			"anim": "singDOWN-alt",
+			"indices": [],
+			"name": "altdown"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-46,
 				90
 			],
-			"loop": false,
-			"anim": "singUP-alt",
 			"fps": 24,
-			"name": "altup",
-			"indices": []
+			"anim": "singUP-alt",
+			"indices": [],
+			"name": "altup"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-13,
 				-47
 			],
-			"loop": false,
-			"anim": "singRIGHT-alt",
 			"fps": 24,
-			"name": "altright",
-			"indices": []
+			"anim": "singRIGHT-alt",
+			"indices": [],
+			"name": "altright"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
 		},
 		{
 			"offsets": [
 				24,
 				0
 			],
-			"loop": false,
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "left",
-			"indices": []
-		},
-		{
-			"offsets": [
+			"indices": [
+				1,
+				2,
+				3,
 				4,
-				-1
+				5,
+				6
 			],
-			"loop": false,
-			"anim": "singDOWN",
 			"fps": 24,
-			"name": "down",
-			"indices": []
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left"
 		},
 		{
 			"offsets": [
 				1,
 				58
 			],
-			"loop": false,
-			"anim": "singUP",
-			"fps": 24,
-			"name": "up",
-			"indices": []
-		},
-		{
-			"offsets": [
+			"indices": [
 				1,
-				0
+				2,
+				3,
+				4,
+				5,
+				6
 			],
-			"loop": false,
-			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "right",
-			"indices": []
+			"anim": "singUP",
+			"loop": false,
+			"name": "up"
 		},
 		{
 			"offsets": [
-				0,
-				0
+				4,
+				-1
 			],
-			"loop": false,
-			"anim": "idle",
+			"indices": [
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			],
 			"fps": 24,
-			"name": "idle",
-			"indices": []
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down"
+		},
+		{
+			"offsets": [
+				3,
+				-1
+			],
+			"indices": [
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right"
 		}
 	],
 	"no_antialiasing": false,
