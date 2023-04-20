@@ -621,6 +621,11 @@ class PlayState extends MusicBeatState
 				beegee = new FlxSprite(-284, -226).loadGraphic(Paths.image('storage'));
 				beegee.antialiasing = true;
 				add(beegee);
+
+				miraYellowOverlay = new FlxSprite(-284, -226).loadGraphic(Paths.image('storage_overlay'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = SCREEN;
+				miraYellowOverlay.alpha = 0.75;
 			case 'jermhouse':
 				beegee = new FlxSprite(-527, -404);
 				beegee.loadGraphic(Paths.image('jermhouse'));
