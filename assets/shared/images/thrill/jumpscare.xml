@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="yaaum_toth_jumpscare.png">
+	<!-- Created with Adobe Animate version 22.0.0.93 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="idle0000" x="5" y="5" width="640" height="360"/>
+	<SubTexture name="idle0001" x="5" y="5" width="640" height="360"/>
+	<SubTexture name="idle0002" x="5" y="370" width="640" height="360"/>
+	<SubTexture name="idle0003" x="5" y="370" width="640" height="360"/>
+</TextureAtlas>
