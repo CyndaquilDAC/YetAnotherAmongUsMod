@@ -4,19 +4,21 @@ import openfl.display.BitmapData;
 import flixel.FlxBasic;
 import flixel.system.FlxAssets.FlxShader;
 
+//stolen from vs impostor but i modified it a biiiittt
 class HeatwaveShader extends FlxBasic
 {
     public var shader(default, null):FabsShaderGLSL = new FabsShaderGLSL();
     var iTime:Float = 0;
 
-    public function new():Void{
+    public function new(offsetMulti:Float = 0.009):Void{
         super();
-        shader.distortTexture.input = BitmapData.fromFile(Paths.getPreloadPath('impostor/images/polus/heatwave.png'));
+        shader.offsetMulti.value = [offsetMulti];
+        shader.distortTexture.input = BitmapData.fromFile(Paths.getLibraryPath('images/heatwave.png', 'shared'));
     }
 
     override public function update(elapsed:Float):Void{
         super.update(elapsed);
-        iTime += elapsed;
+        iTime += 2;
         shader.iTime.value = [iTime];
     }
 }
@@ -28,13 +30,15 @@ class FabsShaderGLSL extends FlxShader
 
         uniform float iTime;
 
+        uniform float offsetMulti;
+
         uniform sampler2D distortTexture;
 
         void main(){
                 vec2 p_m = openfl_TextureCoordv;
                 vec2 p_d = p_m;
 
-                p_d.t -= iTime * 0.05;
+                p_d.t -= iTime * 0.25;
                 p_d.t = mod(p_d.t, 1.0);
 
                 vec4 dst_map_val = flixel_texture2D(distortTexture, p_d);
@@ -42,7 +46,7 @@ class FabsShaderGLSL extends FlxShader
                 vec2 dst_offset = dst_map_val.xy;
                 dst_offset -= vec2(.5,.5);
                 dst_offset *= 2.;
-                dst_offset *= 0.009; //THIS CONTROLS THE INTENSITY [higher numbers = MORE WAVY]
+                dst_offset *= offsetMulti; //THIS CONTROLS THE INTENSITY [higher numbers = MORE WAVY]
 
                 //reduce effect towards Y top
                 dst_offset *= pow(p_m.t, 1.4); //THIS CONTROLS HOW HIGH UP THE SCREEN THE EFFECT GOES [higher numbers = less screen space]

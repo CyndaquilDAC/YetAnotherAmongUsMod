@@ -2227,6 +2227,15 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
+		if(caShader != null)
+		{
+			caShader.update(elapsed);
+		}
+		if(heatwaveShader != null)
+		{
+			heatwaveShader.update(elapsed);
+		}
+
 		//istg
 		if(memeGroup != null)
 		{
@@ -4134,7 +4143,6 @@ class PlayState extends MusicBeatState
 						dadGroup.add(dad);
 						defaultCamZoom += 0.025;
 						FlxG.camera.setFilters([new ShaderFilter(heatwaveShader.shader), new ShaderFilter(caShader.shader)]);
-						camHUD.setFilters([new ShaderFilter(heatwaveShader.shader)]);
 						FlxG.camera.flash();
 					case 400 | 416 | 432:
 						defaultCamZoom += 0.025;
@@ -4178,33 +4186,28 @@ class PlayState extends MusicBeatState
 			case 'fissure' | 'fissure-erect':
 				switch(curBeat)
 				{
-					case 356:
+					/*case 356:
 						//statey.shader = caShader.shader;
 						FlxTween.tween(statey, {alpha: 1}, (Conductor.crochet / 250) * 4);
 					case 372:
 						dad.visible = false;
 						boyfriend.visible = false;
 						balckBg.alpha = 1;
-						FlxTween.tween(statey, {alpha: 0}, 2);
-					case 130:
+						FlxTween.tween(statey, {alpha: 0}, 2);*/
+					case 62:
 						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom + 0.5}, Conductor.crochet / 500, {ease: FlxEase.sineIn});
 						FlxTween.tween(whiteThingy, {alpha: 1}, Conductor.crochet / 500, {ease: FlxEase.sineIn});
-					case 132:
+					case 64:
 						FlxG.camera.setFilters([new ShaderFilter(heatwaveShader.shader), new ShaderFilter(caShader.shader)]);
-						camHUD.setFilters([new ShaderFilter(heatwaveShader.shader)]);
 						FlxTween.cancelTweensOf(whiteThingy);
 						FlxTween.cancelTweensOf(FlxG.camera);
 						whiteThingy.alpha = 0;
 						defaultCamZoom += 0.15;
 						balckBg.alpha = 0.4;
 						FlxG.camera.flash();
-					case 192:
-						FlxTween.tween(balckBg, {alpha: 0}, Conductor.crochet / 250, {ease: FlxEase.sineIn});
-					case 194:
+					case 128:
 						defaultCamZoom += 0.15;
-					case 196:
-						FlxG.camera.setFilters([]);
-						camHUD.setFilters([]);
+					case 192:
 						defaultCamZoom -= 0.3;
 						FlxG.camera.flash();
 				}
