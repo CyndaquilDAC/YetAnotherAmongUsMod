@@ -548,6 +548,18 @@ class PlayState extends MusicBeatState
 				effgee = new FlxSprite(-162, -122);
 				effgee.loadGraphic(Paths.image('thrill/fg'));
 				effgee.antialiasing = true;
+
+				miraYellowOverlay = new FlxSprite(-440, -350);
+				miraYellowOverlay.loadGraphic(Paths.image('thrill/glow'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.alpha = 0.35;
+				miraYellowOverlay.blend = SCREEN;
+
+				gameAwardsLites = new FlxSprite(-417, -404);
+				gameAwardsLites.loadGraphic(Paths.image('thrill/green'));
+				gameAwardsLites.antialiasing = true;
+				gameAwardsLites.alpha = 0.3;
+				gameAwardsLites.blend = SCREEN;
 			case 'shh':
 				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
 				beegee.antialiasing = true;
@@ -4211,9 +4223,11 @@ class PlayState extends MusicBeatState
 			case 'thrill-of-the-hunt' | 'thrill-of-the-hunt-erect':
 				switch(curBeat)
 				{
-					case 388:
+					case 4:
 						beegee.loadGraphic(Paths.image('thrill/bglo'));
 						effgee.loadGraphic(Paths.image('thrill/fglo'));
+						miraYellowOverlay.visible = false;
+						gameAwardsLites.visible = false;
 						dadGroup.remove(dad);
 						dad = new Character(dad.x, dad.y, 'seekerlo', false);
 						dadGroup.add(dad);
@@ -4221,9 +4235,11 @@ class PlayState extends MusicBeatState
 						boyfriend = new Boyfriend(boyfriend.x, boyfriend.y, 'hiderlo');
 						boyfriendGroup.add(boyfriend);
 						FlxG.camera.flash(FlxColor.BLACK);
-					case 452:
+					case 36:
 						beegee.loadGraphic(Paths.image('thrill/bg'));
 						effgee.loadGraphic(Paths.image('thrill/fg'));
+						miraYellowOverlay.visible = true;
+						gameAwardsLites.visible = true;
 						dadGroup.remove(dad);
 						dad = new Character(dad.x, dad.y, 'seeker', false);
 						dadGroup.add(dad);
@@ -4231,15 +4247,17 @@ class PlayState extends MusicBeatState
 						boyfriend = new Boyfriend(boyfriend.x, boyfriend.y, 'hider');
 						boyfriendGroup.add(boyfriend);
 						FlxG.camera.flash(FlxColor.WHITE);
-					case 460:
+					case 200:
 						FlxG.camera.flash(FlxColor.WHITE);
-					case 660:
+					case 302:
 						dad.color = FlxColor.BLACK;
 						boyfriend.color = FlxColor.BLACK;
 						beegee.color = FlxColor.BLACK;
 						effgee.color = FlxColor.BLACK;
 						iconP1.color = FlxColor.BLACK;
 						FlxG.camera.flash(FlxColor.RED);
+						miraYellowOverlay.visible = false;
+						gameAwardsLites.visible = false;
 				}
 		}
 
