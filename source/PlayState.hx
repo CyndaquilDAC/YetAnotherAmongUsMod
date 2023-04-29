@@ -552,13 +552,13 @@ class PlayState extends MusicBeatState
 				miraYellowOverlay = new FlxSprite(-440, -350);
 				miraYellowOverlay.loadGraphic(Paths.image('thrill/glow'));
 				miraYellowOverlay.antialiasing = true;
-				miraYellowOverlay.alpha = 0.35;
+				miraYellowOverlay.alpha = 0.55;
 				miraYellowOverlay.blend = SCREEN;
 
 				gameAwardsLites = new FlxSprite(-417, -404);
 				gameAwardsLites.loadGraphic(Paths.image('thrill/green'));
 				gameAwardsLites.antialiasing = true;
-				gameAwardsLites.alpha = 0.3;
+				gameAwardsLites.alpha = 0.5;
 				gameAwardsLites.blend = SCREEN;
 			case 'shh':
 				beegee = new FlxSprite(-550, -300).loadGraphic(Paths.image('buebg'));
@@ -612,6 +612,8 @@ class PlayState extends MusicBeatState
 				caShader = new ChromaticAbberation(0);
 				add(caShader);
 				caShader.amount = -0.2;
+
+				//camZoomingMult = 1.25;
 
 				heatwaveShader = new HeatwaveShader();
 				add(heatwaveShader);
@@ -4007,6 +4009,11 @@ class PlayState extends MusicBeatState
 
 	var lastStepHit:Int = -1;
 
+	var chromAmount:Float = -0.5;
+	var chromDefault:Float = -0.2;
+	var chromFreq:Int = 2;
+	var chromTween:FlxTween;
+
 	override function stepHit()
 	{
 		super.stepHit();
@@ -4041,6 +4048,21 @@ class PlayState extends MusicBeatState
 		if(curBeat % 2 == 0 && shherCanBop && shhBgMan != null)
 		{
 			shhBgMan.animation.play('idle', true);
+		}
+
+		if(caShader != null)
+		{
+			if(curBeat % chromFreq == 0)
+			{
+				if(camZooming)
+				{
+					FlxG.camera.zoom += 0.05;
+				}
+
+				if(chromTween != null) chromTween.cancel();
+				caShader.amount = chromAmount;
+				chromTween = FlxTween.tween(caShader, {amount: chromDefault}, Conductor.crochet / 1000, {ease: FlxEase.sineOut});
+			}
 		}
 
 		if(curBeat % 16 == 0 && SONG.song.toLowerCase().startsWith('shh'))
