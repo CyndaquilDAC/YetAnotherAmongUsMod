@@ -33,7 +33,7 @@ class MainMenuState extends MusicBeatState
 {
 	var elapsedtime:Float = 0;
 
-	public static var psychEngineVersion:String = '1'; //This is also used for Discord RPC
+	public static var psychEngineVersion:String = 'Demo'; //This is also used for Discord RPC
 
 	var starsBg:FlxBackdrop;
 	var starsFg:FlxBackdrop;
@@ -133,14 +133,14 @@ class MainMenuState extends MusicBeatState
 		storyButt.updateHitbox();
 		storyButt.label.fieldWidth = 229;
 		storyButt.label.setFormat(Paths.font("arial.ttf"), 36, FlxColor.WHITE, CENTER);
-		add(storyButt);
+		//add(storyButt);
 
-		freeButt = new FlxUIButton(649.45, 467.5, 'Freeplay', null, true, false);
+		freeButt = new FlxUIButton(398.25, 467.5, 'Demo', null, true, false);
 		freeButt.loadGraphicSlice9([Paths.image('button'), Paths.image('button'), Paths.image('button')], 18, 18, [[6, 6, 11, 11], [6, 6, 11, 11], [6, 6, 11, 11]]);
-		freeButt.resize(229 / 2, 94 / 2);
+		freeButt.resize(229, 94 / 2);
 		freeButt.scale.set(2, 2);
 		freeButt.updateHitbox();
-		freeButt.label.fieldWidth = 229;
+		freeButt.label.fieldWidth = 229 * 2;
 		freeButt.label.setFormat(Paths.font("arial.ttf"), 36, FlxColor.WHITE, CENTER);
 		add(freeButt);
 
@@ -149,7 +149,7 @@ class MainMenuState extends MusicBeatState
 		optButt.antialiasing = true;
 		add(optButt);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Yet Another Among Us Mod v" + psychEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Yet Another Among Us Mod " + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat(Paths.font("arial.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -172,27 +172,18 @@ class MainMenuState extends MusicBeatState
 		}
 
 		//so fuckign stupid
-		if(FlxG.mouse.overlaps(storyButt))
+		if(FlxG.mouse.overlaps(optButt))
 		{
-			storyButt.color = FlxColor.LIME;
-			freeButt.color = FlxColor.WHITE;
-			optButt.color = FlxColor.WHITE;
-		}
-		else if(FlxG.mouse.overlaps(optButt))
-		{
-			storyButt.color = FlxColor.WHITE;
 			freeButt.color = FlxColor.WHITE;
 			optButt.color = FlxColor.GRAY;
 		}
 		else if(FlxG.mouse.overlaps(freeButt))
 		{
 			freeButt.color = FlxColor.LIME;
-			storyButt.color = FlxColor.WHITE;
 			optButt.color = FlxColor.WHITE;
 		}
 		else
 		{
-			storyButt.color = FlxColor.WHITE;
 			freeButt.color = FlxColor.WHITE;
 			optButt.color = FlxColor.WHITE;
 		}
@@ -215,11 +206,7 @@ class MainMenuState extends MusicBeatState
 					FlxG.mouse.visible = false;
 				}
 
-				if(FlxG.mouse.overlaps(storyButt))
-				{
-					MusicBeatState.switchState(new StoryMenuState());
-				}
-				else if(FlxG.mouse.overlaps(optButt))
+				if(FlxG.mouse.overlaps(optButt))
 				{
 					MusicBeatState.switchState(new OptionsState());
 				}

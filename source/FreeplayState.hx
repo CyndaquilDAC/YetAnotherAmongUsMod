@@ -269,12 +269,7 @@ class FreeplayState extends MusicBeatState
 			ratingSplit[1] += '0';
 		}
 
-		var erectPrething:String = 'NORMAL MODE (TAB)\n';
-		if(erectSuffix == '-erect')
-		{
-			erectPrething = 'ERECT MODE (TAB)\n';
-		}
-		scoreText.text = erectPrething + 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
+		scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
 		positionHighscore();
 
 		var upP = controls.UI_UP_P;
@@ -328,7 +323,7 @@ class FreeplayState extends MusicBeatState
 			MusicBeatState.switchState(new MainMenuState());
 		}
 
-		if(FlxG.keys.justPressed.TAB)
+		/*if(FlxG.keys.justPressed.TAB)
 		{
 			if(erectSuffix == '-erect')
 			{
@@ -339,7 +334,7 @@ class FreeplayState extends MusicBeatState
 				erectSuffix = '-erect';
 			}
 			changeSelection();
-		}
+		}*/
 
 		if(ctrl)
 		{
