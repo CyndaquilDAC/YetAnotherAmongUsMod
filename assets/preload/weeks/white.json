@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Indecision", "wardrobe", [158, 179, 217]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Wardrobe Wartime",
+	"weekBefore": "black",
+	"weekName": "White",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Childsplay", "pretender", [47, 170, 47]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Bootleg Bash",
+	"weekBefore": "forte",
+	"weekName": "Bootlegs",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

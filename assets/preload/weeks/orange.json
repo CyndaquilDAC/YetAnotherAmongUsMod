@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Father-of-Fifty", "orange", [158, 179, 217]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Fatherly Fatality",
+	"weekBefore": "pink",
+	"weekName": "Orange",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

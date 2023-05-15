@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Post-Irony", "jermer", [121, 199, 219]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "It's The Sus Guy!",
+	"weekBefore": "olive",
+	"weekName": "#Dank #Memes",
+	"startUnlocked": true,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}

@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Denied", "card", [204, 212, 212]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Card-Swipe Catastrophe",
+	"weekBefore": "blue",
+	"weekName": "Green",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

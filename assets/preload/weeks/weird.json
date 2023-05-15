@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Weird", "weird", [200, 191, 231]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Where's he even from?",
+	"weekBefore": "novisor",
+	"weekName": "Weirdy",
+	"startUnlocked": true,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}

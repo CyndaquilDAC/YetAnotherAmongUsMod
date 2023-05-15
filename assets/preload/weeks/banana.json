@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Accolades", "nana", [255, 254, 190]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Game Awards Gambit",
+	"weekBefore": "rose",
+	"weekName": "Banana",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

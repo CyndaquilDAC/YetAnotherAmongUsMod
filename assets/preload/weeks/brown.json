@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Drifting", "brown", [255, 254, 190]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Spacial Scatter",
+	"weekBefore": "white",
+	"weekName": "Brown",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

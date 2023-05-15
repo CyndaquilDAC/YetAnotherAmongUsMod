@@ -1,0 +1,22 @@
+{
+	"songs": [
+		["Initial", "red", [198, 18, 18]],
+		["Foundation", "red", [198, 18, 18]],
+		["Boilerplate", "red", [198, 18, 18]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Red's Week",
+	"weekBefore": "red",
+	"weekName": "Red",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

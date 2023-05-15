@@ -1,0 +1,21 @@
+{
+	"songs": [
+		["Fast-Tune", "toons", [200, 191, 231]],
+		["Cash-Cow", "toons", [200, 191, 231]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Fast Tunes",
+	"weekBefore": "jerma",
+	"weekName": "Fast Toons",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

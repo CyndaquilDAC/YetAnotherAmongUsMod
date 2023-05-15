@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Standoff", "gray", [51, 52, 62]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Armory Arms Race",
+	"weekBefore": "banana",
+	"weekName": "Grey",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

@@ -1,0 +1,22 @@
+{
+	"songs": [
+		["Shh", "blue", [15, 27, 130]],
+		["Compromised", "blue", [15, 27, 130]],
+		["Alliance", "blue", [15, 27, 130]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Shushing Showdown",
+	"weekBefore": "red",
+	"weekName": "Blue",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

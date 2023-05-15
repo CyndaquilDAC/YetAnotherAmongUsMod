@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Displacement", "forte", [29, 152, 83]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Out of Bounds...",
+	"weekBefore": "weird",
+	"weekName": "Fortegreen",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

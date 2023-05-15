@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Squashin", "pink", [158, 179, 217]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Bug Bounty Bustin'",
+	"weekBefore": "green",
+	"weekName": "Pink",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

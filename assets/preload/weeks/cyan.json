@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Flicker", "cyan", [0, 195, 226]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Flickering Foe",
+	"weekBefore": "brown",
+	"weekName": "Cyan",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

@@ -1,7 +1,5 @@
 {
 	"songs": [
-		["Displacement", "forte", [29, 152, 83]],
-		["Childsplay", "pretender", [47, 170, 47]],
 		["Obligatory", "dad", [199, 17, 16]]
 	],
 
@@ -12,9 +10,9 @@
 	],
 	"weekBackground": "stage",
 
-	"storyName": "The Secrets",
-	"weekBefore": "extra",
-	"weekName": "Secret",
+	"storyName": "Siivagunner's Best Work, Reincarnated",
+	"weekBefore": "bootlegs",
+	"weekName": "Siivagunner",
 	"startUnlocked": true,
 
 	"hideStoryMode": true,

@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Overturned", "olive", [89, 116, 50]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Pickled",
+	"weekBefore": "hns",
+	"weekName": "Olive",
+	"startUnlocked": true,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}

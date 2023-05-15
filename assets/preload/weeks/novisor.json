@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["One-of-Us", "novisor", [200, 191, 231]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "No Visor, No Visor, We Will Make You One Of Us",
+	"weekBefore": "fast-toons",
+	"weekName": "No Visor, No Visor, We Will Make You One Of Us",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

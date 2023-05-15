@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Decoy", "maroon", [255, 254, 190]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Intrusion",
+	"weekBefore": "purple",
+	"weekName": "Maroon",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

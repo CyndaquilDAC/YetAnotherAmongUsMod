@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Thrill-of-The-Hunt", "seeker", [255, 42, 67]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Die and Flee",
+	"weekBefore": "coral",
+	"weekName": "Hide n' Seek",
+	"startUnlocked": true,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}

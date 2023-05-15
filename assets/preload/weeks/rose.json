@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Non-Compos-Mentis", "rose", [146, 113, 253]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "'The way we drag a bunch of people into lunacy'",
+	"weekBefore": "maroon",
+	"weekName": "Rose",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

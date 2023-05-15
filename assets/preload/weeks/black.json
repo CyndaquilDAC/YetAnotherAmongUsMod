@@ -1,0 +1,22 @@
+{
+	"songs": [
+		["Embargo", "black", [168, 47, 64]],
+		["Fissure", "black", [168, 47, 64]],
+		["Possum", "black", [168, 47, 64]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Menacing Monstrosity",
+	"weekBefore": "yellow",
+	"weekName": "Black",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

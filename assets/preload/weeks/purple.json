@@ -1,0 +1,22 @@
+{
+	"songs": [
+		["Infamy", "purple", [51, 16, 108]],
+		["Rest-Unwell", "purple", [51, 16, 108]],
+		["Curse-of-Kingship", "purple", [51, 16, 108]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Crusade for the Kingship",
+	"weekBefore": "lime",
+	"weekName": "Purple",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}
