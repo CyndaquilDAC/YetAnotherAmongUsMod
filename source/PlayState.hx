@@ -423,6 +423,8 @@ class PlayState extends MusicBeatState
 		{
 			switch (songName)
 			{
+				case 'non-compos-mentis' | 'non-compos-mentis-erect':
+					curStage = 'mentis';
 				case 'overturned' | 'overturned-erect':
 					curStage = 'olive';
 				case 'thrill-of-the-hunt' | 'thrill-of-the-hunt-erect':
@@ -640,6 +642,17 @@ class PlayState extends MusicBeatState
 				miraYellowOverlay.antialiasing = true;
 				miraYellowOverlay.blend = SCREEN;
 				miraYellowOverlay.alpha = 0.75;
+			case 'mentis':
+				beegee = new FlxSprite(-283, -360).loadGraphic(Paths.image('mentis'));
+				beegee.antialiasing = true;
+				beegee.scrollFactor.set();
+				add(beegee);
+
+				miraYellowOverlay = new FlxSprite(-283, -360).loadGraphic(Paths.image('mentis_glow'));
+				miraYellowOverlay.antialiasing = true;
+				miraYellowOverlay.blend = OVERLAY;
+				miraYellowOverlay.alpha = 0.35;
+				miraYellowOverlay.scrollFactor.set();
 			case 'jermhouse':
 				beegee = new FlxSprite(-527, -404);
 				beegee.loadGraphic(Paths.image('jermhouse'));
@@ -752,6 +765,14 @@ class PlayState extends MusicBeatState
 		if(gameAwardsLites != null)
 		{
 			add(gameAwardsLites);
+		}
+
+		if (curStage == 'mentis')
+		{
+			dadGhost.scrollFactor.set(0, 0);
+			dadGroup.scrollFactor.set(0, 0);
+			bfGhost.scrollFactor.set(0, 0);
+			boyfriendGroup.scrollFactor.set(0, 0);
 		}
 
 		whiteThingy = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
