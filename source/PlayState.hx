@@ -27,7 +27,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -694,23 +694,23 @@ class PlayState extends MusicBeatState
 				effgee = new FlxSprite().loadGraphic(Paths.image('weird_discord'));
 				effgee.scrollFactor.set();
 			case 'purple':
-				beegee = new FlxSprite(-531.4, -216.55);
+				beegee = new FlxSprite(-952, -276);
 				beegee.loadGraphic(Paths.image('that-mira-room'));
 				beegee.antialiasing = true;
 				add(beegee);
 
-				shhBgMan = new FlxSprite(-331.65, 305);
+				shhBgMan = new FlxSprite(-351.3, 343.2);
 				shhBgMan.frames = Paths.getSparrowAtlas('shh_assasinate_purple');
-				shhBgMan.animation.addByPrefix('idle', 'shh guy idle', 24, false);
-				shhBgMan.animation.addByPrefix('kill', 'shh guy kills', 24, false);
+				shhBgMan.animation.addByPrefix('idle', 'idle', 24, false);
+				shhBgMan.animation.addByPrefix('kill', 'kill', 24, false);
 				shhBgMan.animation.play('idle', true);
 				shhBgMan.antialiasing = true;
 				add(shhBgMan);
 
-				miraYellowOverlay = new FlxSprite(-531.4, -216.55).loadGraphic(Paths.image('mira_room_yellow'));
+				miraYellowOverlay = new FlxSprite(-836, -352).loadGraphic(Paths.image('mira_room_yellow'));
 				miraYellowOverlay.antialiasing = true;
-				miraYellowOverlay.blend = HARDLIGHT;
-				miraYellowOverlay.alpha = 0.25;
+				miraYellowOverlay.blend = SCREEN;
+				miraYellowOverlay.alpha = 0.5;
 			case 'gray':
 				beegee = new FlxSprite(-264.05, -58.7);
 				beegee.loadGraphic(Paths.image('grey_back'));
@@ -4213,17 +4213,18 @@ class PlayState extends MusicBeatState
 			case 'infamy' | 'infamy-erect':
 				switch(curBeat)
 				{
-					case 460:
-						shherCanBop = false;
-						shhBgMan.x -= 25;
-						shhBgMan.animation.play('kill', true);
+					case 335:
 						dad.canDance = false;
 						dad.canSing = false;
 						dad.playAnim('scared', true);
 						defaultCamZoom -= 0.1;
-					case 464:
+					case 336:
+						shherCanBop = false;
+						//shhBgMan.x -= 25;
+						shhBgMan.y -= 15;
+						shhBgMan.animation.play('kill', true);
 						dad.playAnim('die', true);
-						FlxG.camera.flash(FlxColor.RED, 0.25);
+						FlxG.camera.flash(FlxColor.RED, 0.15);
 						defaultCamZoom += 0.2;
 				}
 			case 'fissure' | 'fissure-erect':
